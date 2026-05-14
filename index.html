@@ -47,28 +47,33 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 /* ── Palette pill: Happy Hues style — bg card + overlapping circles ── */
 .pal-pill{
   width:96px;
+  height:56px;
   border-radius:16px;
-  padding:10px 10px 10px 12px;
+  padding:0;
   cursor:pointer;
   position:relative;
   border:2.5px solid transparent;
   transition:transform 0.18s,border-color 0.18s,box-shadow 0.18s;
   margin-bottom:8px;flex-shrink:0;
-  overflow:hidden; /* key: clips the dots inside */
-  display:flex;align-items:center;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
 }
-.pal-pill:hover{transform:scale(1.04);box-shadow:0 6px 22px rgba(0,0,0,.5);}
+.pal-pill:hover{
+  transform:scale(1.04);
+  box-shadow:0 6px 22px rgba(0,0,0,.5);
+  border-color:rgba(255,255,255,0.55);
+}
 .pal-pill.active{border-color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 6px 22px rgba(0,0,0,.55);}
 
 .pal-dots{
-  display:flex;align-items:center;
+  display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
 .pal-dot{
-  width:24px;height:24px;border-radius:50%;
-  flex-shrink:0;margin-left:-8px;
-  border:2.5px solid rgba(0,0,0,0.15);
-  box-shadow:0 1px 3px rgba(0,0,0,.2);
+  width:14px;height:14px;border-radius:50%;
+  flex-shrink:0;margin-left:-4px;
+  border:none;
+  box-shadow:none;
 }
 .pal-dot:first-child{margin-left:0;}
 
@@ -310,7 +315,7 @@ h2{
 .term-icon{
   width:50px;height:50px;border-radius:14px;
   background:var(--btn);display:flex;align-items:center;
-  justify-content:center;margin-bottom:20px;font-size:1.5rem;
+  justify-content:center;margin-bottom:20px;color:var(--btnT);
   transition:background 0.4s;
 }
 .term-card h3{
@@ -376,7 +381,7 @@ h2{
   transition:background 0.4s,border-color 0.4s,transform 0.2s;
 }
 .testi-card:hover{transform:translateY(-3px);}
-.testi-stars{color:#f59e0b;font-size:0.92rem;letter-spacing:2px;margin-bottom:14px;}
+.testi-stars{color:#f59e0b;display:flex;gap:3px;margin-bottom:14px;}
 .testi-text{
   font-size:0.96rem;color:var(--cp);line-height:1.77;
   margin-bottom:20px;font-style:italic;transition:color 0.4s;
@@ -447,7 +452,7 @@ h2{
   transition:background 0.4s,border-color 0.4s,transform 0.2s;
 }
 .trust-badge:hover{transform:translateY(-3px);}
-.trust-icon{font-size:2.2rem;margin-bottom:14px;}
+.trust-icon{display:flex;justify-content:center;align-items:center;margin-bottom:14px;color:var(--acc);}
 .trust-badge h4{font-size:0.96rem;font-weight:700;color:var(--ch);margin-bottom:7px;transition:color 0.4s;}
 .trust-badge p{font-size:0.82rem;color:var(--para);transition:color 0.4s;}
 
@@ -625,7 +630,7 @@ h2{
 }
 .m-pill.active{border-color:#fff;}
 .m-pill:hover{transform:scale(1.06);}
-.m-pill .pal-dots .pal-dot{width:18px;height:18px;}
+.m-pill .pal-dots .pal-dot{width:11px;height:11px;margin-left:-3px;}
 .m-close{
   display:block;width:100%;background:#1a1a1a;color:#888;
   border:none;border-radius:12px;
@@ -709,7 +714,7 @@ h2{
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
     </div>
-    <button class="nav-cta">Get Started Free →</button>
+    <button class="nav-cta">Get Started Free <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle;margin-left:2px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
   </nav>
 
   <!-- HERO -->
@@ -719,13 +724,13 @@ h2{
       <h1>Pick colors that <em>actually work</em> in your UI.</h1>
       <p class="hero-sub">ProductDesigner.xyz shows you exactly how every palette breathes in a real product — not just swatches on a white page. See it live, then ship with confidence.</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="nextPalette()">Change the color scheme →</button>
+        <button class="btn-primary" onclick="nextPalette()">Change the color scheme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         <a href="#how" class="btn-ghost">See how it works</a>
       </div>
-      <p class="hero-note">✓ Free forever &nbsp;·&nbsp; No signup needed &nbsp;·&nbsp; 16 curated palettes</p>
+      <p class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>Free forever &nbsp;·&nbsp; No signup needed &nbsp;·&nbsp; 16 curated palettes</p>
     </div>
     <div class="vis-wrap">
-      <div class="vis-badge">✦ Live Preview</div>
+      <div class="vis-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" style="display:inline;vertical-align:middle;margin-right:6px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Live Preview</div>
       <div class="vis">
         <div class="vis-bar">
           <div class="vis-d" style="background:#ff5f57;"></div>
@@ -761,12 +766,12 @@ h2{
     <h2>Color terminology</h2>
     <p class="sec-lead">Think of these as the levers you pull to craft any color with precision and intention in your design work.</p>
     <div class="term-grid">
-      <div class="term-card"><div class="term-icon">🎨</div><h3>Hue</h3><p>The parent color in its purest, fully saturated form — no white or black added. The true version of any color on the spectrum.</p></div>
-      <div class="term-card"><div class="term-icon">☀️</div><h3>Tint</h3><p>A hue with white added. In Figma or Sketch, lower the saturation slider to push a color toward a lighter, softer tint.</p></div>
-      <div class="term-card"><div class="term-icon">🌑</div><h3>Shade</h3><p>A hue with black added. Lower the brightness value in your design tool to shift a color into deeper, darker shadow territory.</p></div>
-      <div class="term-card"><div class="term-icon">🌫️</div><h3>Tone</h3><p>Between tint and shade — grey is added, softening the natural vibrancy into something more muted and sophisticated.</p></div>
-      <div class="term-card"><div class="term-icon">💡</div><h3>Value</h3><p>How light or dark a color appears — the measure of how much light it reflects or seems to emit to the eye of the viewer.</p></div>
-      <div class="term-card"><div class="term-icon">⚡</div><h3>Saturation</h3><p>The purity and intensity of a color. High saturation is vivid and bold. Low saturation reads as muted, desaturated, or grey.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg></div><h3>Hue</h3><p>The parent color in its purest, fully saturated form — no white or black added. The true version of any color on the spectrum.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div><h3>Tint</h3><p>A hue with white added. In Figma or Sketch, lower the saturation slider to push a color toward a lighter, softer tint.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div><h3>Shade</h3><p>A hue with black added. Lower the brightness value in your design tool to shift a color into deeper, darker shadow territory.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 10a4 4 0 00-4-4 6 6 0 00-6 6H3"/><path d="M4 14h16"/><path d="M4 18h12"/></svg></div><h3>Tone</h3><p>Between tint and shade — grey is added, softening the natural vibrancy into something more muted and sophisticated.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17H8v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/></svg></div><h3>Value</h3><p>How light or dark a color appears — the measure of how much light it reflects or seems to emit to the eye of the viewer.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Saturation</h3><p>The purity and intensity of a color. High saturation is vivid and bold. Low saturation reads as muted, desaturated, or grey.</p></div>
     </div>
   </section>
 
@@ -799,12 +804,12 @@ h2{
       <div class="stat-item"><div class="stat-num">16<span>+</span></div><div class="stat-label">Curated palettes</div></div>
       <div class="stat-item"><div class="stat-num">50<span>k+</span></div><div class="stat-label">Monthly users</div></div>
       <div class="stat-item"><div class="stat-num">200<span>k+</span></div><div class="stat-label">Hex codes copied</div></div>
-      <div class="stat-item"><div class="stat-num">4.9<span>★</span></div><div class="stat-label">Average rating</div></div>
+      <div class="stat-item"><div class="stat-num">4.9<span><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" style="display:inline;vertical-align:middle"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span></div><div class="stat-label">Average rating</div></div>
     </div>
     <div class="testi-grid">
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"I used to spend hours figuring out if a palette would work in my UI. ProductDesigner.xyz shows me in seconds. First stop for every new project."</p><div class="testi-author"><div class="testi-av">SL</div><div><div class="testi-name">Sarah Lin</div><div class="testi-role">Senior Product Designer @ Notion</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The context-in-UI approach is exactly what was missing from every other color tool. I can show clients how a palette looks before we commit."</p><div class="testi-author"><div class="testi-av">MK</div><div><div class="testi-name">Marcus Klein</div><div class="testi-role">Freelance UI/UX Designer</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The labeled hue roles are incredibly useful. Background, button, dark section — exactly the structure I need when building a Figma design system."</p><div class="testi-author"><div class="testi-av">AR</div><div><div class="testi-name">Anaya Rowe</div><div class="testi-role">Design Lead @ Stripe</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"I used to spend hours figuring out if a palette would work in my UI. ProductDesigner.xyz shows me in seconds. First stop for every new project."</p><div class="testi-author"><div class="testi-av">SL</div><div><div class="testi-name">Sarah Lin</div><div class="testi-role">Senior Product Designer @ Notion</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"The context-in-UI approach is exactly what was missing from every other color tool. I can show clients how a palette looks before we commit."</p><div class="testi-author"><div class="testi-av">MK</div><div><div class="testi-name">Marcus Klein</div><div class="testi-role">Freelance UI/UX Designer</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"The labeled hue roles are incredibly useful. Background, button, dark section — exactly the structure I need when building a Figma design system."</p><div class="testi-author"><div class="testi-av">AR</div><div><div class="testi-name">Anaya Rowe</div><div class="testi-role">Design Lead @ Stripe</div></div></div></div>
     </div>
   </section>
 
@@ -840,10 +845,10 @@ h2{
     <div class="eyebrow"><span class="eyebrow-dot"></span>You can trust us</div>
     <h2>Built by a designer,<br>for designers.</h2>
     <div class="trust-grid">
-      <div class="trust-badge"><div class="trust-icon">🔒</div><h4>No account required</h4><p>Zero personal data collected. No email, no tracking, no cookies.</p></div>
-      <div class="trust-badge"><div class="trust-icon">♾️</div><h4>Free forever</h4><p>All 16 palettes, all hex codes, all features. No freemium bait-and-switch.</p></div>
-      <div class="trust-badge"><div class="trust-icon">🎯</div><h4>Curated, not generated</h4><p>Every palette hand-picked by a working product designer — not an algorithm.</p></div>
-      <div class="trust-badge"><div class="trust-icon">📬</div><h4>Real contact info</h4><p>hello@productdesigner.xyz — a real human replies within 24h.</p></div>
+      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h4>No account required</h4><p>Zero personal data collected. No email, no tracking, no cookies.</p></div>
+      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.739-8z"/></svg></div><h4>Free forever</h4><p>All 16 palettes, all hex codes, all features. No freemium bait-and-switch.</p></div>
+      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h4>Curated, not generated</h4><p>Every palette hand-picked by a working product designer — not an algorithm.</p></div>
+      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h4>Real contact info</h4><p>hello@productdesigner.xyz — a real human replies within 24h.</p></div>
     </div>
   </section>
 
@@ -866,7 +871,7 @@ h2{
   <div class="cta-banner">
     <h2>Stop guessing. Start designing<br>with colors that work.</h2>
     <p>16 palettes. Live UI preview. Copy-paste hex codes. Free forever.</p>
-    <button class="btn-white" onclick="nextPalette();document.getElementById('main').scrollTo({top:0,behavior:'smooth'});">Try your first palette →</button>
+    <button class="btn-white" onclick="nextPalette();document.getElementById('main').scrollTo({top:0,behavior:'smooth'});">Try your first palette <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
   </div>
 
   <!-- ABOUT / FOUNDER -->
@@ -880,7 +885,7 @@ h2{
         </div>
         <div class="about-pfp-name">Fajar Siddiq</div>
         <div class="about-pfp-role">Serial Entrepreneur · Indie Maker · Digital Nomad</div>
-        <a href="https://fajarsiddiq.com" target="_blank" rel="noopener" class="about-pfp-domain">fajarsiddiq.com ↗</a>
+        <a href="https://fajarsiddiq.com" target="_blank" rel="noopener" class="about-pfp-domain">fajarsiddiq.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12" style="display:inline;vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
 
         <div class="social-grid">
           <a href="https://fajarsiddiq.com/instagram" target="_blank" rel="noopener" class="social-btn">
@@ -926,7 +931,7 @@ h2{
       <div class="about-bio">
         <div class="eyebrow" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);"><span style="width:6px;height:6px;border-radius:50%;background:var(--btn);display:inline-block;transition:background 0.4s;"></span>The person behind it</div>
         <h2>Who's behind<br>ProductDesigner.xyz?</h2>
-        <p>Hi there 👋 My name is <strong>Fajar Siddiq</strong>, and I'm the creator of ProductDesigner.xyz. I'm a serial entrepreneur who enjoys building digital products, branding systems, landing pages, and creative side projects that turn ideas into real experiences on the internet :)</p>
+        <p>Hi there — my name is <strong>Fajar Siddiq</strong>, and I'm the creator of ProductDesigner.xyz. I'm a serial entrepreneur who enjoys building digital products, branding systems, landing pages, and creative side projects that turn ideas into real experiences on the internet.</p>
         <p>The goal behind ProductDesigner.xyz is to bring together my work, ideas, and experiments in one place — especially around branding, landing page design, and choosing the right colour systems that make products feel intentional and memorable.</p>
         <p>I wanted to build a space that not only showcases what I'm working on, but also helps others understand how to apply these ideas in a practical, creative, and usable way.</p>
         <p style="color:rgba(255,255,255,.38);font-size:0.88rem;">Singapore / Malaysia &nbsp;·&nbsp; Serial Entrepreneur + Indie-Maker + Influencer + Producer + Professional Yo-Yo Player + Digital Nomad + Designer & Developer</p>
@@ -1033,7 +1038,7 @@ function buildSb(){
     <div class="sb-lbl">Palettes</div>
   `;
   P.forEach((p,i)=>{
-    const el=makePill(p,i,'pal-pill',24);
+    const el=makePill(p,i,'pal-pill',14);
     el.addEventListener('mouseenter',()=>{
       const tip=el.querySelector('.pal-tip');
       if(tip) tip.style.top=(el.getBoundingClientRect().top+12)+'px';
@@ -1047,7 +1052,7 @@ function buildMobile(){
   const mg=document.getElementById('m-grid');
   mg.innerHTML='';
   P.forEach((p,i)=>{
-    const el=makePill(p,i,'m-pill',18);
+    const el=makePill(p,i,'m-pill',11);
     el.title=p.n;
     el.onclick=()=>{selP(i);closeDr();};
     mg.appendChild(el);
