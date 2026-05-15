@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful — ProductDesigner.xyz</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="https://i.ibb.co/cmR9LJL/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0f0f0f;
+  min-height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.card{
+  background:#181818;
+  border:1px solid #2a2a2a;
+  border-radius:28px;
+  padding:56px 48px;
+  max-width:480px;width:100%;
+  text-align:center;
+}
+.check-circle{
+  width:72px;height:72px;border-radius:50%;
+  background:#1a3a2a;border:2px solid #2ecc71;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;
+  animation:pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.check-circle svg{width:32px;height:32px;color:#2ecc71;}
+h1{
+  font-size:1.9rem;font-weight:900;color:#fff;
+  letter-spacing:-0.04em;line-height:1.1;
+  margin-bottom:12px;
+}
+.sub{
+  font-size:0.96rem;color:rgba(255,255,255,.55);
+  line-height:1.7;margin-bottom:36px;
+}
+.unlock-btn{
+  display:block;width:100%;
+  background:#f582ae;color:#001858;
+  border:none;border-radius:14px;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:800;
+  padding:16px 28px;cursor:pointer;
+  transition:opacity 0.2s,transform 0.15s;
+  box-shadow:0 8px 28px rgba(245,130,174,.3);
+  margin-bottom:12px;
+}
+.unlock-btn:hover{opacity:0.87;transform:translateY(-2px);}
+.note{
+  font-size:0.76rem;color:rgba(255,255,255,.28);
+  line-height:1.65;
+}
+.note a{color:rgba(255,255,255,.45);text-decoration:underline;}
+.divider{
+  height:1px;background:#2a2a2a;
+  margin:32px 0;
+}
+.what-you-get{text-align:left;}
+.wg-title{
+  font-size:0.68rem;font-weight:800;letter-spacing:0.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+  margin-bottom:14px;
+}
+.wg-feat{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.86rem;color:rgba(255,255,255,.65);
+  margin-bottom:10px;
+}
+.wg-feat svg{flex-shrink:0;color:#2ecc71;}
+.already{
+  display:none;
+  background:#1a3a2a;border:1px solid #2ecc71;
+  border-radius:14px;padding:18px;
+  font-size:0.9rem;color:#2ecc71;
+  margin-bottom:16px;
+}
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+
+  <div class="check-circle">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </div>
+
+  <h1>Payment confirmed!</h1>
+  <p class="sub">Thank you for upgrading to Pro. Click the button below to unlock your Pro features on this device — no account or login required.</p>
+
+  <div class="already" id="already-unlocked">
+    ✓ Pro is already unlocked on this device.
+  </div>
+
+  <button class="unlock-btn" id="unlock-btn" onclick="unlockPro()">
+    Unlock Pro on this device →
+  </button>
+
+  <p class="note">
+    Using another device? Open this page on that device and click the button again.<br>
+    Questions? <a href="mailto:hello@productdesigner.xyz">hello@productdesigner.xyz</a>
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="what-you-get">
+    <div class="wg-title">What you just unlocked</div>
+    <div class="wg-feat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="20 6 9 17 4 12"/></svg>
+      Design system generator
+    </div>
+    <div class="wg-feat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="20 6 9 17 4 12"/></svg>
+      CSS variables export
+    </div>
+    <div class="wg-feat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="20 6 9 17 4 12"/></svg>
+      Tailwind config + JSON tokens
+    </div>
+    <div class="wg-feat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="20 6 9 17 4 12"/></svg>
+      Auto dark mode token mapping
+    </div>
+    <div class="wg-feat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><polyline points="20 6 9 17 4 12"/></svg>
+      UI component previews
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Check if already unlocked
+if(localStorage.getItem('pro') === 'true'){
+  document.getElementById('already-unlocked').style.display = 'block';
+  document.getElementById('unlock-btn').textContent = 'Back to ProductDesigner.xyz →';
+  document.getElementById('unlock-btn').onclick = () => window.location.href = '/';
+}
+
+function unlockPro(){
+  localStorage.setItem('pro', 'true');
+  localStorage.setItem('pro_unlocked_at', Date.now());
+  // Animate then redirect
+  const btn = document.getElementById('unlock-btn');
+  btn.textContent = '✓ Pro unlocked! Redirecting...';
+  btn.style.background = '#2ecc71';
+  btn.style.color = '#fff';
+  setTimeout(() => {
+    window.location.href = '/#design-system';
+  }, 900);
+}
+</script>
+
+</body>
+</html>
