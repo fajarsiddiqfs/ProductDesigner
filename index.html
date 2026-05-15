@@ -143,6 +143,21 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
   color:var(--hl);letter-spacing:-0.01em;
   transition:color 0.4s;
 }
+.nav-toggles{display:flex;gap:10px;align-items:center;}
+.nav-toggle-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--tbg);color:var(--tt);
+  border:1.5px solid var(--bdr);
+  border-radius:999px;
+  padding:7px 16px;
+  font-family:'Inter',sans-serif;
+  font-size:0.78rem;font-weight:600;
+  cursor:pointer;
+  transition:background 0.2s,border-color 0.2s,color 0.2s,opacity 0.2s;
+  white-space:nowrap;
+}
+.nav-toggle-btn:hover{opacity:0.8;}
+.nav-toggle-btn.active{background:var(--btn);color:var(--btnT);border-color:var(--btn);}
 .nav-links{display:flex;gap:32px;}
 .nav-links a{
   font-size:0.88rem;font-weight:500;
@@ -855,14 +870,16 @@ h2{
       </div>
       <span class="nav-wordmark">Product Designer</span>
     </a>
-    <div class="nav-links">
-      <a href="#why">Why us</a>
-      <a href="#benefits">Benefits</a>
-      <a href="#how">How it works</a>
-      <a href="#about">About</a>
-      <a href="#faq">FAQ</a>
+    <div class="nav-toggles">
+      <button class="nav-toggle-btn" id="btn-sidebar" onclick="toggleSidebar()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        Color Palette
+      </button>
+      <button class="nav-toggle-btn" id="btn-hues" onclick="toggleHues()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        Section Colors
+      </button>
     </div>
-    <button class="nav-cta" onclick="nextPalette()">Change Color <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle;margin-left:2px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
     </div>
   </nav>
 
@@ -1206,7 +1223,7 @@ const P=[
   {n:"Lavender Mist",c:["#f7f0ff","#845ec2","#2e0057","#e8d5f5","#d2b4de"], bg:"#f7f0ff",hl:"#2e0057",para:"#4a1080",btn:"#845ec2",btnT:"#ffffff",cbg:"#e8d5f5",ch:"#2e0057",cp:"#4a1080",acc:"#6d3a9c",tbg:"#d2b4de",tt:"#2e0057",dark:"#2e0057",dk:"#4a1080"},
 ];
 
-let ai=4;
+let ai=11;
 
 function applyP(p){
   const s=document.documentElement.style;
@@ -1338,6 +1355,21 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     }
   });
 });
+
+function toggleSidebar(){
+  const sb=document.getElementById('sb');
+  const btn=document.getElementById('btn-sidebar');
+  const hidden=sb.style.display==='none';
+  sb.style.display=hidden?'':'none';
+  btn.classList.toggle('active',hidden);
+}
+function toggleHues(){
+  const hp=document.getElementById('hues-panel');
+  const btn=document.getElementById('btn-hues');
+  const hidden=hp.style.display==='none';
+  hp.style.display=hidden?'':'none';
+  btn.classList.toggle('active',hidden);
+}
 
 buildSb();buildMobile();applyP(P[ai]);
 </script>
