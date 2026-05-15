@@ -111,10 +111,19 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 .nav{
   position:sticky;top:0;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 64px;height:72px;
+  padding:0;
+  height:72px;
   background:var(--bg);
   border-bottom:1px solid var(--bdr);
   transition:background 0.4s;
+  box-sizing:border-box;
+}
+.nav-inner{
+  width:100%;max-width:1100px;
+  margin:0 auto;
+  padding:0 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:100%;
 }
 .nav-brand{
   display:flex;align-items:center;gap:10px;
@@ -154,10 +163,16 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 /* ── HERO ── */
 .hero{
   background:var(--bg);
-  padding:88px 64px 96px;
+  padding:88px 0 96px;
+  transition:background 0.4s;
+}
+.hero-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 64px;
   display:grid;grid-template-columns:1fr 1fr;
   gap:72px;align-items:center;
-  transition:background 0.4s;
+  box-sizing:border-box;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
@@ -252,7 +267,7 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 /* ── HUES PANEL ── */
 .hues-panel{
   background:var(--cbg);
-  padding:36px 64px;
+  padding:36px 0;
   border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);
   transition:background 0.4s;
   width:100%;box-sizing:border-box;
@@ -286,20 +301,28 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 
 /* ── SECTIONS ── */
 .sec{
-  padding:104px 64px;
+  padding:104px 0;
   transition:background 0.4s;
   box-sizing:border-box;
   background-image:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,255,255,0.06) 0%,transparent 70%);
+}
+.sec-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 64px;
+  box-sizing:border-box;
 }
 .sec-alt{
   background:var(--cbg);
   background-image:radial-gradient(ellipse 70% 60% at 80% 120%,rgba(255,255,255,0.07) 0%,transparent 65%);
   transition:background 0.4s;
+  padding:104px 0;
 }
 .sec-dark{
   background:var(--dark);
   background-image:radial-gradient(ellipse 90% 60% at 20% 50%,rgba(255,255,255,0.04) 0%,transparent 70%);
   transition:background 0.4s;
+  padding:104px 0;
 }
 
 .eyebrow{
@@ -669,11 +692,13 @@ h2{
   .sb-toggle{display:flex !important;}
   .m-overlay{display:block;}
   .m-drawer{display:block;}
-  .nav{padding:0 24px;height:64px;}
+  .nav{height:64px;}
+  .nav-inner{padding:0 24px;}
   .nav-links{display:none;}
-  .hero{grid-template-columns:1fr;padding:52px 24px 60px;gap:40px;}
+  .hero-inner{grid-template-columns:1fr;padding:52px 24px 60px;gap:40px;}
   .vis-wrap{order:-1;}
-  .sec,.about-sec{padding:72px 24px;}
+  .sec,.about-sec{padding:72px 0;}
+  .sec-inner{padding:0 24px;}
   .hues-panel{padding:28px 24px;}
   .hp-groups{gap:24px;}
   /* psych-layout already flex */
@@ -818,6 +843,7 @@ h2{
 <div class="main" id="main">
 
   <nav class="nav">
+    <div class="nav-inner">
     <a href="#" class="nav-brand">
       <div class="nav-icon">
         <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
@@ -836,11 +862,13 @@ h2{
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
     </div>
-    <button class="nav-cta">Change Color <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle;margin-left:2px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    <button class="nav-cta" onclick="nextPalette()">Change Color <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle;margin-left:2px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <div class="hero-inner">
     <div>
       <div class="hero-eyebrow"><span class="eyebrow-dot"></span>For Product Designers</div>
       <h1>Pick colors that <em>actually work</em> in your UI.</h1>
@@ -877,13 +905,15 @@ h2{
         <div class="vis-blob"></div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- HUES PANEL -->
-  <div class="hues-panel" id="hues-panel"></div>
+  <div class="hues-panel" id="hues-panel" style="padding:36px 0;"><div class="sec-inner" id="hues-panel-inner"></div></div>
 
   <!-- TERMINOLOGY -->
   <section class="sec" id="why">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Learn the basics</div>
     <h2>Color terminology</h2>
     <p class="sec-lead">Think of these as the levers you pull to craft any color with precision and intention in your design work.</p>
@@ -895,10 +925,12 @@ h2{
       <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17H8v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/></svg></div><h3>Value</h3><p>How light or dark a color appears — the measure of how much light it reflects or seems to emit to the eye of the viewer.</p></div>
       <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Saturation</h3><p>The purity and intensity of a color. High saturation is vivid and bold. Low saturation reads as muted, desaturated, or grey.</p></div>
     </div>
+    </div>
   </section>
 
   <!-- PSYCHOLOGY -->
   <section class="sec sec-alt" id="psychology">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Design with intention</div>
     <h2>The psychology of color</h2>
     <p class="sec-lead">Every color triggers a different emotional response. Understanding this lets you design with purpose, not guesswork.</p>
@@ -910,10 +942,12 @@ h2{
       <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#2dc653;"></div><span class="psych-name">Green</span><span class="psych-badge">Secondary</span></div><p>Naturally soothing to the eye. Ideal for health, environment, and finance-adjacent products.</p><div class="psych-tags"><span class="psych-tag">Nature</span><span class="psych-tag">Health</span><span class="psych-tag">Growth</span><span class="psych-tag">Balance</span></div></div>
       <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#fb5607;"></div><span class="psych-name">Orange</span><span class="psych-badge">Secondary</span></div><p>Energetic and approachable — red's friendlier sibling. Works well for CTAs and adventure brands.</p><div class="psych-tags"><span class="psych-tag">Energy</span><span class="psych-tag">Adventure</span><span class="psych-tag">Creativity</span></div></div>
     </div>
+    </div>
   </section>
 
   <!-- SOCIAL PROOF -->
   <section class="sec" id="proof">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Trusted by designers</div>
     <h2>Designers use it.<br>Designers love it.</h2>
     <div class="stats-row">
@@ -927,10 +961,12 @@ h2{
       <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"The context-in-UI approach is exactly what was missing from every other color tool. I can show clients how a palette looks before we commit."</p><div class="testi-author"><div class="testi-av">MK</div><div><div class="testi-name">Marcus Klein</div><div class="testi-role">Freelance UI/UX Designer</div></div></div></div>
       <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"The labeled hue roles are incredibly useful. Background, button, dark section — exactly the structure I need when building a Figma design system."</p><div class="testi-author"><div class="testi-av">AR</div><div><div class="testi-name">Anaya Rowe</div><div class="testi-role">Design Lead @ Stripe</div></div></div></div>
     </div>
+    </div>
   </section>
 
   <!-- BENEFITS -->
   <section class="sec sec-alt" id="benefits">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>What you actually get</div>
     <h2>Outcomes, not features.</h2>
     <p class="sec-lead">We don't list specs. We describe what actually changes for you when you use ProductDesigner.xyz.</p>
@@ -942,10 +978,12 @@ h2{
       <div class="ben-card"><div class="ben-num">05</div><h3>Never start a project on a blank canvas</h3><p>16 production-ready palettes covering every mood: dark, light, pastel, bold, neon, earthy. One is exactly right for your next project.</p></div>
       <div class="ben-card"><div class="ben-num">06</div><h3>Copy-paste ready, zero friction</h3><p>Every hex code is one click away. No export menus, no account login, no app to install. Your clipboard is one step from your design file.</p></div>
     </div>
+    </div>
   </section>
 
   <!-- HOW IT WORKS -->
   <section class="sec" id="how">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Simple as 1-2-3</div>
     <h2>How it works.</h2>
     <p class="sec-lead">No tutorial needed. You'll figure it out in 10 seconds — but here's the full breakdown anyway.</p>
@@ -954,10 +992,12 @@ h2{
       <div class="step"><div class="step-num">2</div><h3>Watch the entire page update instantly</h3><p>The full mockup — hero, cards, dark sections, footer — all re-skin in real time. You see exactly how the palette behaves in a real product UI.</p></div>
       <div class="step"><div class="step-num">3</div><h3>Copy the hex codes and ship</h3><p>Click any chip in the hues panel to copy the hex. Paste straight into Figma, Tailwind, or VS Code — wherever you build your products.</p></div>
     </div>
+    </div>
   </section>
 
   <!-- PRICING -->
   <section class="sec" id="pricing">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Simple pricing</div>
     <h2 style="text-align:center;">Plans for every designer.</h2>
     <p class="sec-lead" style="text-align:center;max-width:540px;margin-left:auto;margin-right:auto;">Start free, upgrade when you need more. No hidden fees, no surprises.</p>
@@ -1024,10 +1064,12 @@ h2{
       </div>
 
     </div>
+    </div>
   </section>
 
   <!-- TRUST -->
   <section class="sec sec-alt" id="trust">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>You can trust us</div>
     <h2>Built by a designer,<br>for designers.</h2>
     <div class="trust-grid">
@@ -1036,10 +1078,12 @@ h2{
       <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h4>Curated, not generated</h4><p>Every palette hand-picked by a working product designer — not an algorithm.</p></div>
       <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h4>Real contact info</h4><p>hello@productdesigner.xyz — a real human replies within 24h.</p></div>
     </div>
+    </div>
   </section>
 
   <!-- FAQ -->
   <section class="sec" id="faq">
+    <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Got questions?</div>
     <h2 style="text-align:center;margin-bottom:14px;">Frequently asked questions.</h2>
     <p class="sec-lead" style="text-align:center;margin:0 auto 56px;">We've answered the most common hesitations right here.</p>
@@ -1050,6 +1094,7 @@ h2{
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you plan to add more palettes?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes. New palettes are added regularly based on design trends and community requests. Follow Fajar on social media to get notified when new ones drop.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I request a custom palette for my brand?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Custom palette creation and full design system consulting is available as a paid service. Reach out to hello@productdesigner.xyz and we'll talk through options and pricing.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on mobile?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes — fully responsive. On mobile the sidebar is replaced by a "Change Palette" button at the bottom of the screen. Tap it to open a drawer with all 16 palettes in a grid.</div></div>
+    </div>
     </div>
   </section>
 
@@ -1062,6 +1107,7 @@ h2{
 
   <!-- ABOUT / FOUNDER -->
   <section class="about-sec" id="about">
+    <div class="sec-inner">
     <div class="about-layout">
 
       <!-- LEFT: profile card -->
@@ -1123,6 +1169,7 @@ h2{
         <p style="color:rgba(255,255,255,.38);font-size:0.88rem;">Singapore / Malaysia &nbsp;·&nbsp; Serial Entrepreneur + Indie-Maker + Influencer + Producer + Professional Yo-Yo Player + Digital Nomad + Designer & Developer</p>
       </div>
 
+    </div>
     </div>
   </section>
 
@@ -1196,7 +1243,8 @@ function renderHues(p){
     h+='</div>';
   });
   h+='</div>';
-  document.getElementById('hues-panel').innerHTML=h;
+  const hp=document.getElementById('hues-panel-inner')||document.getElementById('hues-panel');
+  hp.innerHTML=h;
 }
 
 function makePill(p,i,cls,dotSize){
