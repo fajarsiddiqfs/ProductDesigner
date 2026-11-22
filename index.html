@@ -60,7 +60,7 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 /* ── SIDEBAR ── */
 .sb{
   width:148px;flex-shrink:0;
-  background:#0d0d0d;border-right:1px solid #1c1c1c;
+  background:color-mix(in srgb,var(--dark) 80%,var(--btn) 20%);border-right:1px solid rgba(255,255,255,.1);transition:background 0.4s;
   display:flex;flex-direction:column;align-items:center;
   padding:0 0 28px;
   height:100dvh;overflow-y:auto;overflow-x:hidden;
@@ -71,12 +71,12 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 .sb-logo{
   width:100%;height:78px;
   display:flex;align-items:center;justify-content:center;
-  border-bottom:1px solid #1c1c1c;
+  border-bottom:1px solid rgba(255,255,255,.1);
   flex-shrink:0;margin-bottom:16px;cursor:pointer;
 }
 .sb-lbl{
-  font-size:0.5rem;font-weight:800;letter-spacing:0.18em;
-  text-transform:uppercase;color:#3a3a3a;
+  font-size:0.66rem;font-weight:800;letter-spacing:0.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.78);
   margin:0 0 12px;text-align:center;
 }
 
@@ -272,6 +272,23 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 .btn-ghost:hover{background:var(--cbg);}
 .hero-note{font-size:0.8rem;color:var(--para);margin-top:16px;transition:color 0.4s;}
 
+
+/* hero note: always one row, scales with its column */
+.hero-note-wrap{container-type:inline-size;margin-top:16px;width:100%;}
+.hero-note{
+  display:flex;flex-wrap:nowrap;align-items:center;gap:0 1.1em;margin:0;
+  font-size:clamp(9px,2.55cqw,13.5px);white-space:nowrap;
+}
+.hero-note span{display:inline-flex;align-items:center;gap:.4em;}
+.hero-note svg{width:1.05em;height:1.05em;flex-shrink:0;color:var(--btn);}
+.hero-note b{font-weight:500;}
+.hero-note .n-short{display:none;}
+@container (max-width:430px){
+  .hero-note{font-size:clamp(10px,3.9cqw,13.5px);}
+  .hero-note .n-long{display:none;}
+  .hero-note .n-short{display:inline;}
+}
+
 /* ── MOCKUP ── */
 .vis-wrap{position:relative;}
 .vis-badge{
@@ -322,32 +339,38 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
   transition:background 0.4s;
   width:100%;box-sizing:border-box;
 }
-.hp-head{display:flex;align-items:baseline;gap:12px;margin-bottom:24px;}
+.hp-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-bottom:32px;}
+.hp-copyall{margin-left:auto;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;background:var(--btn);color:var(--btnT);font:inherit;font-weight:800;font-size:.9rem;padding:11px 22px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.12);transition:background .4s,color .4s,transform .15s,box-shadow .15s;}
+.hp-copyall:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18);}
+.hp-copyall:active{transform:none;}
 .hp-title{
-  font-size:0.76rem;font-weight:800;letter-spacing:0.12em;
+  font-size:1rem;font-weight:800;letter-spacing:0.12em;
   text-transform:uppercase;color:var(--hl);transition:color 0.4s;
 }
-.hp-sub{font-size:0.72rem;color:var(--para);transition:color 0.4s;}
-.hp-groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:32px;width:100%;}
+.hp-sub{font-size:0.92rem;color:var(--para);transition:color 0.4s;}
+.hp-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 28px;width:100%;}
+.hp-item{min-width:0;}
+@media (max-width:1000px){.hp-groups{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:480px){.hp-groups{grid-template-columns:1fr;}}
 .hp-glabel{
-  font-size:0.62rem;font-weight:800;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--acc);margin-bottom:12px;
+  font-size:0.8rem;font-weight:800;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--acc);margin-bottom:16px;
   transition:color 0.4s;
 }
 .hp-item{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:8px;cursor:pointer;
-  border-radius:10px;padding:5px 8px 5px 5px;
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:12px;cursor:pointer;
+  border-radius:14px;padding:8px 12px 8px 8px;
   transition:background 0.15s,transform 0.15s;
 }
 .hp-item:hover{background:var(--tbg);transform:translateX(4px);}
 .hp-chip{
-  width:32px;height:32px;border-radius:8px;
-  border:1px solid rgba(0,0,0,.08);flex-shrink:0;
+  width:56px;height:56px;border-radius:14px;
+  border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.08);flex-shrink:0;
   transition:background 0.4s;
 }
-.hp-name{font-size:0.72rem;font-weight:600;color:var(--hl);line-height:1.3;transition:color 0.4s;}
-.hp-hex{font-size:0.65rem;color:var(--acc);font-family:'Inter',monospace;transition:color 0.4s;}
+.hp-name{font-size:1rem;font-weight:700;color:var(--hl);line-height:1.3;transition:color 0.4s;}
+.hp-hex{font-size:.9rem;font-weight:600;margin-top:2px;color:var(--acc);font-family:'Inter',monospace;text-transform:uppercase;transition:color 0.4s;}
 
 /* ── SECTIONS ── */
 .sec{
@@ -610,9 +633,8 @@ h2{
 .about-pfp-col{text-align:center;}
 .about-pfp-img{
   width:280px;height:280px;border-radius:50%;
-  overflow:hidden;border:4px solid var(--btn);
+  overflow:hidden;border:none;
   margin:0 auto 22px;
-  transition:border-color 0.4s;
   box-shadow:0 16px 48px rgba(0,0,0,.35);
 }
 .about-pfp-img img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -633,21 +655,20 @@ h2{
   transition:background 0.4s,color 0.4s,opacity 0.2s;
 }
 .about-pfp-domain:hover{opacity:.85;}
+.about-pfp-domains{display:flex;flex-wrap:nowrap;gap:10px;justify-content:center;margin-bottom:26px;}
+.about-pfp-domains .about-pfp-domain{margin-bottom:0;white-space:nowrap;padding:8px 16px;}
+@media (max-width:380px){.about-pfp-domains{flex-wrap:wrap;}}
 
 /* social icons grid */
-.social-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.social-grid{display:flex;flex-wrap:nowrap;gap:clamp(4px,2vw,14px);justify-content:center;max-width:100%;}
 .social-btn{
-  display:flex;align-items:center;gap:7px;
-  background:rgba(255,255,255,.08);
-  color:rgba(255,255,255,.85);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;padding:9px 14px;
-  text-decoration:none;font-size:0.75rem;font-weight:600;
-  transition:background 0.2s,border-color 0.2s,transform 0.15s;
-  white-space:nowrap;
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:none;padding:3px;min-width:0;
+  color:rgba(255,255,255,.7);text-decoration:none;
+  transition:color 0.2s,transform 0.15s;
 }
-.social-btn:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.25);transform:translateY(-2px);}
-.social-btn svg{width:16px;height:16px;flex-shrink:0;}
+.social-btn:hover{color:#fff;transform:translateY(-2px);}
+.social-btn svg{width:clamp(18px,5.4vw,24px);height:clamp(18px,5.4vw,24px);flex-shrink:0;}
 
 /* bio right */
 .about-bio h2{color:#fff;margin-bottom:24px;}
@@ -704,17 +725,17 @@ h2{
 .m-overlay.show{opacity:1;pointer-events:all;}
 .m-drawer{
   display:none;position:fixed;bottom:0;left:0;right:0;
-  background:#0d0d0d;border-top:1px solid #222;
+  background:color-mix(in srgb,var(--dark) 80%,var(--btn) 20%);border-top:1px solid rgba(255,255,255,.1);
   border-radius:22px 22px 0 0;
   padding:16px 22px 40px;z-index:300;
   transform:translateY(100%);
   transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 .m-drawer.open{transform:translateY(0);}
-.m-handle{width:40px;height:4px;border-radius:2px;background:#2a2a2a;margin:0 auto 16px;}
+.m-handle{width:40px;height:4px;border-radius:2px;background:rgba(255,255,255,.25);margin:0 auto 16px;}
 .m-title{
   font-size:0.72rem;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;color:#444;margin-bottom:16px;text-align:center;
+  text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:16px;text-align:center;
 }
 .m-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
 .m-pill{
@@ -730,7 +751,7 @@ h2{
 .m-pill .pal-dots .pal-dot{width:12px;height:12px;margin-left:-3px;}
 .m-pill .pal-dots .pal-dot:first-child{margin-left:0;}
 .m-close{
-  display:block;width:100%;background:#1a1a1a;color:#888;
+  display:block;width:100%;background:rgba(255,255,255,.12);color:#fff;
   border:none;border-radius:12px;
   font-family:'Inter',sans-serif;font-size:0.84rem;
   padding:12px;cursor:pointer;margin-top:18px;
@@ -1169,6 +1190,80 @@ h2{
   background:var(--btn);animation:pulse 2s infinite;
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── REFERENCE DROPZONE + PALETTE MODAL ── */
+.ref-drop{position:relative;animation:refBlink 1.6s ease-in-out infinite;}
+@keyframes refBlink{
+  0%,100%{border-color:var(--bdr);box-shadow:0 0 0 0 transparent;}
+  50%{border-color:var(--btn);box-shadow:0 0 0 5px color-mix(in srgb,var(--btn) 30%,transparent);}
+}
+.ref-drop:hover,.ref-drop:focus-within,.ref-drop.drag{animation:none;}
+@media (prefers-reduced-motion:reduce){.ref-drop{animation:none;border-color:var(--btn);}}
+.ref-drop:hover,.ref-drop:focus-within,.ref-drop.drag{
+  border-style:solid;border-color:var(--btn);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--btn) 28%,transparent),0 10px 28px rgba(0,0,0,.1);
+}
+.ref-cursor{
+  position:absolute;right:12px;bottom:10px;width:26px;height:26px;pointer-events:none;
+  color:var(--hl);filter:drop-shadow(0 2px 3px rgba(0,0,0,.25));
+  animation:refNudge 1.8s ease-in-out infinite;transition:transform .2s;
+}
+.ref-drop:hover .ref-cursor,.ref-drop.drag .ref-cursor{animation:none;transform:translate(-4px,-4px) scale(1.12);}
+@keyframes refNudge{0%,100%{transform:translate(0,0)}50%{transform:translate(-5px,-5px)}}
+@media (prefers-reduced-motion:reduce){.ref-cursor{animation:none;}}
+
+.ref-drop{
+  margin-top:18px;border:2px dashed var(--bdr);border-radius:18px;
+  background:rgba(255,255,255,.35);padding:22px 16px;text-align:center;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  transition:border-color .2s,background .2s,transform .2s;color:var(--hl);
+}
+.ref-drop:hover,.ref-drop.drag{border-color:var(--btn);background:rgba(255,255,255,.6);}
+.ref-drop.drag{transform:scale(1.015);}
+.ref-drop svg{width:26px;height:26px;}
+.ref-drop b{font-size:.95rem;font-weight:700;}
+.ref-drop span{font-size:.8rem;color:var(--para);}
+.ref-drop input{display:none;}
+.pal-overlay{
+  position:fixed;inset:0;z-index:9999;background:rgba(10,12,24,.55);
+  backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;
+}
+.pal-overlay.open{display:flex;}
+.pal-modal{
+  background:#fff;color:#111827;width:100%;max-width:460px;border-radius:22px;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);padding:22px;position:relative;
+  animation:palIn .22s ease;max-height:92vh;overflow:auto;
+}
+@keyframes palIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.pal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.pal-head h3{font-size:1.05rem;font-weight:800;}
+.pal-x{
+  width:34px;height:34px;border-radius:50%;border:none;background:#f1f3f7;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:#374151;
+}
+.pal-x:hover{background:#e4e7ee;}
+.pal-prev{
+  width:100%;height:150px;border-radius:14px;background:#f3f4f6 center/contain no-repeat;
+  border:1px solid #e5e7eb;margin-bottom:14px;
+}
+.pal-strip{display:flex;height:54px;border-radius:12px;overflow:hidden;margin-bottom:14px;}
+.pal-strip div{flex:1;}
+.pal-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.pal-row{
+  display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid #e5e7eb;
+  border-radius:12px;background:#fff;cursor:pointer;font:inherit;text-align:left;width:100%;
+}
+.pal-row:hover{background:#f8fafc;}
+.pal-sw{width:34px;height:34px;border-radius:9px;border:1px solid rgba(0,0,0,.1);flex-shrink:0;}
+.pal-hex{font-weight:700;font-size:.9rem;font-family:ui-monospace,Menlo,monospace;flex:1;}
+.pal-cp{font-size:.75rem;color:#6b7280;font-weight:600;}
+.pal-actions{display:flex;gap:10px;}
+.pal-copy{
+  flex:1;padding:12px;border:none;border-radius:12px;background:#111827;color:#fff;
+  font:inherit;font-weight:700;font-size:.9rem;cursor:pointer;
+}
+.pal-copy:hover{background:#000;}
+.pal-err{color:#b91c1c;font-size:.85rem;text-align:center;padding:8px 0 4px;}
 </style>
 </head>
 <body>
@@ -1212,14 +1307,13 @@ h2{
         Pro
       </span>
       <!-- UPGRADE BUTTON (hidden when unlocked) -->
-      <a href="#upgrade" class="nav-pro-btn" id="nav-upgrade-btn">Get Pro — $12/mo</a>
       <button class="nav-toggle-btn" id="btn-sidebar" onclick="toggleSidebar()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-        Color Palette
+        Palette
       </button>
       <button class="nav-toggle-btn" id="btn-hues" onclick="toggleHues()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-        Section Colors
+        Section
       </button>
     </div>
     </div>
@@ -1233,10 +1327,14 @@ h2{
       <h1>From palette to <em>design system</em> in one click.</h1>
       <p class="hero-sub">ProductDesigner.xyz shows every palette in a real UI — and Pro turns it into production-ready CSS variables, Tailwind config, dark mode tokens, and UI components instantly.</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="nextPalette()">Change the color scheme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-        <a href="#how" class="btn-ghost">See how it works</a>
+        <button class="btn-primary" onclick="nextPalette()">Change Color <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <a href="#upgrade" class="btn-ghost">Get Pro</a>
       </div>
-      <p class="hero-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>Free palette browser &nbsp;·&nbsp; Pro design system export &nbsp;·&nbsp; No signup needed</p>
+      <div class="hero-note-wrap"><p class="hero-note">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><b class="n-long">Free palette browser</b><b class="n-short">Free browser</b></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><b class="n-long">Pro design system export</b><b class="n-short">Pro export</b></span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><b class="n-long">No signup needed</b><b class="n-short">No signup</b></span>
+      </p></div>
     </div>
     <div class="vis-wrap">
       <div class="vis-badge"><svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" style="display:inline;vertical-align:middle;margin-right:6px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Live Preview</div>
@@ -1263,6 +1361,14 @@ h2{
         <div class="vis-strip"></div>
         <div class="vis-blob"></div>
       </div>
+
+      <label class="ref-drop" id="ref-drop">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.6"/><path d="M21 15l-5-5L5 21"/></svg>
+        <b>Drop your reference</b>
+        <span>or click to upload (SVG, PNG, JPG, WebP)</span>
+        <svg class="ref-cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7.5-6.2 1.9L9.6 19.5 5 3z" fill="#fff" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <input type="file" id="ref-input" accept="image/svg+xml,image/png,image/jpeg,image/webp,image/gif,.svg">
+      </label>
     </div>
     </div>
   </section>
@@ -1292,14 +1398,13 @@ h2{
     <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Design with intention</div>
     <h2>The psychology of color</h2>
-    <p class="sec-lead">Every color triggers a different emotional response. Understanding this lets you design with purpose, not guesswork.</p>
-    <p class="sec-lead" style="max-width:100%;">Colors carry psychological weight that shapes how people feel, trust, and behave. A single hue shift can move a design from trustworthy to playful, from luxurious to approachable. Use these cards to understand what each hue communicates before building your palette.</p>
+    <p class="sec-lead">Every color triggers a feeling. Know what each one says before you pick your palette.</p>
     <div class="psych-cards">
-      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#e63946;"></div><span class="psych-name">Red</span><span class="psych-badge">Primary</span></div><p>Intense and attention-grabbing. Raises heart rate — why fast food brands lean on it heavily.</p><div class="psych-tags"><span class="psych-tag">Passion</span><span class="psych-tag">Energy</span><span class="psych-tag">Danger</span><span class="psych-tag">Courage</span></div></div>
-      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#f9c74f;"></div><span class="psych-name">Yellow</span><span class="psych-badge">Primary</span></div><p>Bright and energizing. Great for CTAs, but high saturation in large areas can trigger anxiety.</p><div class="psych-tags"><span class="psych-tag">Optimism</span><span class="psych-tag">Fun</span><span class="psych-tag">Caution</span><span class="psych-tag">Warmth</span></div></div>
-      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#4361ee;"></div><span class="psych-name">Blue</span><span class="psych-badge">Primary</span></div><p>Broadly calming and trustworthy. The world's most-liked color, dominant in tech and finance brands.</p><div class="psych-tags"><span class="psych-tag">Trust</span><span class="psych-tag">Calm</span><span class="psych-tag">Loyalty</span><span class="psych-tag">Depth</span></div></div>
-      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#2dc653;"></div><span class="psych-name">Green</span><span class="psych-badge">Secondary</span></div><p>Naturally soothing to the eye. Ideal for health, environment, and finance-adjacent products.</p><div class="psych-tags"><span class="psych-tag">Nature</span><span class="psych-tag">Health</span><span class="psych-tag">Growth</span><span class="psych-tag">Balance</span></div></div>
-      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#fb5607;"></div><span class="psych-name">Orange</span><span class="psych-badge">Secondary</span></div><p>Energetic and approachable — red's friendlier sibling. Works well for CTAs and adventure brands.</p><div class="psych-tags"><span class="psych-tag">Energy</span><span class="psych-tag">Adventure</span><span class="psych-tag">Creativity</span></div></div>
+      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#e63946;"></div><span class="psych-name">Red</span><span class="psych-badge">Primary</span></div><p>Bold and urgent. <b>Use for:</b> sales, food, alerts.</p><div class="psych-tags"><span class="psych-tag">Passion</span><span class="psych-tag">Energy</span><span class="psych-tag">Danger</span><span class="psych-tag">Courage</span></div></div>
+      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#f9c74f;"></div><span class="psych-name">Yellow</span><span class="psych-badge">Primary</span></div><p>Bright and happy. <b>Use for:</b> highlights, CTAs, kids' brands.</p><div class="psych-tags"><span class="psych-tag">Optimism</span><span class="psych-tag">Fun</span><span class="psych-tag">Caution</span><span class="psych-tag">Warmth</span></div></div>
+      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#4361ee;"></div><span class="psych-name">Blue</span><span class="psych-badge">Primary</span></div><p>Calm and trusted. <b>Use for:</b> tech, finance, SaaS.</p><div class="psych-tags"><span class="psych-tag">Trust</span><span class="psych-tag">Calm</span><span class="psych-tag">Loyalty</span><span class="psych-tag">Depth</span></div></div>
+      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#2dc653;"></div><span class="psych-name">Green</span><span class="psych-badge">Secondary</span></div><p>Fresh and safe. <b>Use for:</b> health, eco, money apps.</p><div class="psych-tags"><span class="psych-tag">Nature</span><span class="psych-tag">Health</span><span class="psych-tag">Growth</span><span class="psych-tag">Balance</span></div></div>
+      <div class="psych-card"><div class="psych-head"><div class="psych-dot" style="background:#fb5607;"></div><span class="psych-name">Orange</span><span class="psych-badge">Secondary</span></div><p>Friendly and active. <b>Use for:</b> CTAs, travel, creative brands.</p><div class="psych-tags"><span class="psych-tag">Energy</span><span class="psych-tag">Adventure</span><span class="psych-tag">Creativity</span></div></div>
     </div>
     </div>
   </section>
@@ -1307,18 +1412,18 @@ h2{
   <!-- SOCIAL PROOF -->
   <section class="sec" id="proof">
     <div class="sec-inner">
-    <div class="eyebrow"><span class="eyebrow-dot"></span>Trusted by designers</div>
-    <h2>Designers use it.<br>Designers love it.</h2>
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Built for designers</div>
+    <h2>Pick colors fast.<br>Ship with confidence.</h2>
     <div class="stats-row">
-      <div class="stat-item"><div class="stat-num">16<span>+</span></div><div class="stat-label">Curated palettes</div></div>
-      <div class="stat-item"><div class="stat-num">50<span>k+</span></div><div class="stat-label">Monthly users</div></div>
-      <div class="stat-item"><div class="stat-num">200<span>k+</span></div><div class="stat-label">Hex codes copied</div></div>
-      <div class="stat-item"><div class="stat-num">4.9<span><svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" style="display:inline;vertical-align:middle"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span></div><div class="stat-label">Average rating</div></div>
+      <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Curated palettes</div></div>
+      <div class="stat-item"><div class="stat-num">13</div><div class="stat-label">Color roles per palette</div></div>
+      <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Click to copy any hex</div></div>
+      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">To browse, no signup</div></div>
     </div>
     <div class="testi-grid">
-      <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"I used to spend hours figuring out if a palette would work in my UI. ProductDesigner.xyz shows me in seconds. First stop for every new project."</p><div class="testi-author"><div class="testi-av">SL</div><div><div class="testi-name">Sarah Lin</div><div class="testi-role">Senior Product Designer @ Notion</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"The context-in-UI approach is exactly what was missing from every other color tool. I can show clients how a palette looks before we commit."</p><div class="testi-author"><div class="testi-av">MK</div><div><div class="testi-name">Marcus Klein</div><div class="testi-role">Freelance UI/UX Designer</div></div></div></div>
-      <div class="testi-card"><div class="testi-stars"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p class="testi-text">"The labeled hue roles are incredibly useful. Background, button, dark section — exactly the structure I need when building a Figma design system."</p><div class="testi-author"><div class="testi-av">AR</div><div><div class="testi-name">Anaya Rowe</div><div class="testi-role">Design Lead @ Stripe</div></div></div></div>
+      <div class="testi-card"><div class="testi-text" style="font-style:normal;">Show clients how a palette looks in a real UI before you commit to it.</div><div class="testi-author"><div class="testi-av">FD</div><div><div class="testi-name">Freelance designers</div><div class="testi-role">Pitching to clients</div></div></div></div>
+      <div class="testi-card"><div class="testi-text" style="font-style:normal;">Copy hex codes and CSS variables straight into your project. No guessing.</div><div class="testi-author"><div class="testi-av">DV</div><div><div class="testi-name">Indie developers</div><div class="testi-role">Building side projects</div></div></div></div>
+      <div class="testi-card"><div class="testi-text" style="font-style:normal;">Get a full set of brand colors in minutes, with every role already labeled.</div><div class="testi-author"><div class="testi-av">FN</div><div><div class="testi-name">Founders &amp; small teams</div><div class="testi-role">Setting up a brand</div></div></div></div>
     </div>
     </div>
   </section>
@@ -1327,15 +1432,15 @@ h2{
   <section class="sec sec-alt" id="benefits">
     <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>What you actually get</div>
-    <h2>Outcomes, not features.</h2>
-    <p class="sec-lead">We don't list specs. We describe what actually changes for you when you use ProductDesigner.xyz.</p>
+    <h2>Less guessing. More shipping.</h2>
+    <p class="sec-lead">What changes when you use ProductDesigner.xyz.</p>
     <div class="ben-grid">
-      <div class="ben-card"><div class="ben-num">01</div><h3>Ship your palette in minutes, not hours</h3><p>Stop guessing if sage green looks muddy on a dark card. See it live in 30 seconds instead of an afternoon in Figma testing combinations.</p></div>
-      <div class="ben-card"><div class="ben-num">02</div><h3>Walk into client calls with confidence</h3><p>Show a full UI mockup in their palette — not a mood board. Turn "can we see it in context?" from a pain point into a clear competitive strength.</p></div>
-      <div class="ben-card"><div class="ben-num">03</div><h3>Build design systems with the right color roles</h3><p>Every palette comes with labeled roles: background, headline, card, dark section, accent, tag. Exactly what you need for a Figma color system.</p></div>
-      <div class="ben-card"><div class="ben-num">04</div><h3>Explain color choices to stakeholders</h3><p>Armed with color psychology, you can articulate why blue builds trust — turning gut feel into professional, persuasive reasoning for any audience.</p></div>
-      <div class="ben-card"><div class="ben-num">05</div><h3>Never start a project on a blank canvas</h3><p>16 production-ready palettes covering every mood: dark, light, pastel, bold, neon, earthy. One is exactly right for your next project.</p></div>
-      <div class="ben-card"><div class="ben-num">06</div><h3>Copy-paste ready, zero friction</h3><p>Every hex code is one click away. No export menus, no account login, no app to install. Your clipboard is one step from your design file.</p></div>
+      <div class="ben-card"><div class="ben-num">01</div><h3>Pick a palette in minutes</h3><p>See it live in a real UI. No more testing in Figma.</p></div>
+      <div class="ben-card"><div class="ben-num">02</div><h3>Win client calls</h3><p>Show a full mockup in their colors, not a mood board.</p></div>
+      <div class="ben-card"><div class="ben-num">03</div><h3>Get the right color roles</h3><p>Background, button, card, accent: all labeled for your design system.</p></div>
+      <div class="ben-card"><div class="ben-num">04</div><h3>Explain your choices</h3><p>Use color psychology to back up your decisions.</p></div>
+      <div class="ben-card"><div class="ben-num">05</div><h3>Never start blank</h3><p>16 ready palettes: dark, light, pastel, bold and more.</p></div>
+      <div class="ben-card"><div class="ben-num">06</div><h3>Copy in one click</h3><p>No login, no export, no app to install.</p></div>
     </div>
     </div>
   </section>
@@ -1454,7 +1559,7 @@ h2{
         <div class="pro-gate-label">Unlock Design System Generator</div>
         <div class="pro-gate-sub">Get CSS variables, Tailwind config, dark mode tokens &amp; UI previews</div>
         <a href="#upgrade" class="pro-gate-btn">
-          Get Pro — $12/mo
+          Get Pro — $5/mo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <div class="pro-gate-note">Cancel anytime · No account needed · Works in browser</div>
@@ -1481,10 +1586,10 @@ h2{
       <p class="upgrade-sub">Pro turns any palette into a complete, developer-ready design system — CSS variables, Tailwind config, dark mode mapping, and UI component previews — in one click.</p>
 
       <a id="stripe-upgrade-btn" href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="upgrade-cta-btn">
-        Get Pro — $12/mo
+        Get Pro — $5/mo
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <div class="upgrade-note">$12/month · Cancel anytime · Unlock on this browser instantly after payment</div>
+      <div class="upgrade-note">$5/month · Cancel anytime · Unlock on this browser instantly after payment</div>
 
       <div class="upgrade-compare">
         <div class="upgrade-col">
@@ -1498,7 +1603,7 @@ h2{
           <div class="upgrade-feat" style="color:rgba(255,255,255,.25);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="opacity:.3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Dark mode token mapping</div>
         </div>
         <div class="upgrade-col pro-col">
-          <div class="upgrade-col-title">Pro — $12/month</div>
+          <div class="upgrade-col-title">Pro — $5/month</div>
           <div class="upgrade-feat pro-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Everything in Free</div>
           <div class="upgrade-feat pro-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Design system generator</div>
           <div class="upgrade-feat pro-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>CSS variables export</div>
@@ -1547,7 +1652,7 @@ h2{
         <div class="price-name">Pro</div>
         <div class="price-amount">
           <span class="price-currency">$</span>
-          <span class="price-num">12</span>
+          <span class="price-num">5</span>
         </div>
         <div class="price-period">per month, billed monthly</div>
         <div class="price-divider"></div>
@@ -1559,7 +1664,7 @@ h2{
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>JSON design tokens</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>Dark mode auto-mapping</li>
         </ul>
-        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Pro — $12/mo</a>
+        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Pro — $5/mo</a>
       </div>
 
       <!-- TEAM -->
@@ -1567,7 +1672,7 @@ h2{
         <div class="price-name">Team</div>
         <div class="price-amount">
           <span class="price-currency">$</span>
-          <span class="price-num">39</span>
+          <span class="price-num">19</span>
         </div>
         <div class="price-period">per month, up to 10 seats</div>
         <div class="price-divider"></div>
@@ -1579,7 +1684,7 @@ h2{
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>Admin &amp; role management</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>Dedicated account manager</li>
         </ul>
-        <button class="price-btn">Contact sales</button>
+        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Team — $19/mo</a>
       </div>
 
     </div>
@@ -1607,7 +1712,7 @@ h2{
     <h2 style="text-align:center;margin-bottom:14px;">Frequently asked questions.</h2>
     <p class="sec-lead" style="text-align:center;margin:0 auto 56px;">We've answered the most common hesitations right here.</p>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is it really free? What's the catch?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">The palette browser is free forever — all 16 palettes, all hex codes, no account needed. Pro ($12/mo) unlocks the design system generator, export tools, and dark mode mapping.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is it really free? What's the catch?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">The palette browser is free forever — all 16 palettes, all hex codes, no account needed. Pro ($5/mo) unlocks the design system generator, export tools, and dark mode mapping.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does Pro unlock work — is there an account?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">No account needed. After paying, you're redirected to a success page with a single "Unlock Pro on this device" button. Click it and Pro features are instantly available. To use Pro on another device, visit the success page URL on that device too.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use these palettes in commercial projects?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Absolutely. Colors aren't copyrightable. Use any palette in any project — personal or commercial — without attribution required. A mention is always appreciated though!</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How is this different from other apps?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Other tools show abstract swatches. We show colors in a real UI — hero sections, cards, dark backgrounds, navigation, footers. Each color also has a defined role so it maps directly into your design system.</div></div>
@@ -1622,7 +1727,7 @@ h2{
   <div class="cta-banner">
     <h2>Stop guessing. Start shipping<br>with design systems that work.</h2>
     <p>Browse free. Export with Pro. No account needed.</p>
-    <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn-white">Get Pro — $12/mo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn-white">Get Pro — $5/mo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
 
   <!-- ABOUT / FOUNDER -->
@@ -1636,45 +1741,39 @@ h2{
           <img src="data:image/webp;base64,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" alt="Fajar Siddiq">
         </div>
         <div class="about-pfp-name">Fajar Siddiq</div>
-        <div class="about-pfp-role">Serial Entrepreneur · Indie Maker · Digital Nomad</div>
-        <a href="https://fajarsiddiq.com" target="_blank" rel="noopener" class="about-pfp-domain">fajarsiddiq.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12" style="display:inline;vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        <div class="about-pfp-role">Serial Entrepreneur</div>
+        <div class="about-pfp-domains">
+          <a href="https://fajarsiddiq.com" target="_blank" rel="noopener" class="about-pfp-domain">fajarsiddiq.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12" style="display:inline;vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          <a href="https://euphorya.co" target="_blank" rel="noopener" class="about-pfp-domain">euphorya.co <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12" style="display:inline;vertical-align:middle"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </div>
 
         <div class="social-grid">
-          <a href="https://fajarsiddiq.com/instagram" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-            Instagram
+          <a href="https://fajarsiddiq.com/instagram" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/youtube" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
-            YouTube
+          <a href="https://fajarsiddiq.com/youtube" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/tiktok" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
-            TikTok
+          <a href="https://fajarsiddiq.com/tiktok" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok" title="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/twitter" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            X / Twitter
+          <a href="https://fajarsiddiq.com/twitter" target="_blank" rel="noopener" class="social-btn" aria-label="X / Twitter" title="X / Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/threads" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.525-8.482C5.845 1.207 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.057 7.166 1.427 1.783 3.627 2.697 6.54 2.717 2.637-.018 4.598-.709 5.962-2.11 1.297-1.33 1.95-3.23 1.942-5.65a9.4 9.4 0 00-.086-1.274h-7.858V10.7h9.924c.097.55.147 1.12.147 1.706.008 3.155-.863 5.65-2.546 7.219-1.534 1.437-3.695 2.375-6.49 2.375z"/></svg>
-            Threads
+          <a href="https://fajarsiddiq.com/threads" target="_blank" rel="noopener" class="social-btn" aria-label="Threads" title="Threads">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/facebook" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            Facebook
+          <a href="https://fajarsiddiq.com/facebook" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/telegramc" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            Telegram
+          <a href="https://fajarsiddiq.com/telegramc" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram" title="Telegram">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           </a>
-          <a href="https://fajarsiddiq.com/whatsappc" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp
+          <a href="https://fajarsiddiq.com/whatsappc" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp" title="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           </a>
-          <a href="https://blog.fajarsiddiq.com" target="_blank" rel="noopener" class="social-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            Substack
+          <a href="https://blog.fajarsiddiq.com" target="_blank" rel="noopener" class="social-btn" aria-label="Substack" title="Substack">
+            <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
           </a>
         </div>
       </div>
@@ -1683,10 +1782,9 @@ h2{
       <div class="about-bio">
         <div class="eyebrow" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);"><span style="width:6px;height:6px;border-radius:50%;background:var(--btn);display:inline-block;transition:background 0.4s;"></span>The person behind it</div>
         <h2>Who's behind<br>ProductDesigner.xyz?</h2>
-        <p>Hi there — my name is <strong>Fajar Siddiq</strong>, and I'm the creator of ProductDesigner.xyz. I'm a serial entrepreneur who enjoys building digital products, branding systems, landing pages, and creative side projects that turn ideas into real experiences on the internet.</p>
-        <p>The goal behind ProductDesigner.xyz is to bring together my work, ideas, and experiments in one place — especially around branding, landing page design, and choosing the right colour systems that make products feel intentional and memorable.</p>
-        <p>I wanted to build a space that not only showcases what I'm working on, but also helps others understand how to apply these ideas in a practical, creative, and usable way.</p>
-        <p style="color:rgba(255,255,255,.38);font-size:0.88rem;">Singapore / Malaysia &nbsp;·&nbsp; Serial Entrepreneur + Indie-Maker + Influencer + Producer + Professional Yo-Yo Player + Digital Nomad + Designer & Developer</p>
+        <p>Hi, I'm <strong>Fajar Siddiq</strong>, the creator of ProductDesigner.xyz. I'm a serial entrepreneur who builds digital products, brands and landing pages.</p>
+        <p>I made this tool for my own projects, to pick colors faster and see them in a real UI. Now I'm sharing it so you can do the same.</p>
+        <p style="color:rgba(255,255,255,.38);font-size:0.88rem;">Serial Entrepreneur at Fajar Siddiq</p>
       </div>
 
     </div>
@@ -1694,7 +1792,7 @@ h2{
   </section>
 
   <footer class="footer">
-    <p>©2025 <a href="https://fajarsiddiq.com" target="_blank">ProductDesigner.xyz</a> by <a href="https://fajarsiddiq.com" target="_blank">Fajar Siddiq</a>. All Rights Reserved.</p>
+    <p>©2025 <a href="https://fajarsiddiq.com" target="_blank">ProductDesigner.xyz</a> by <a href="https://euphorya.co" target="_blank">Euphorya</a></p>
     <div class="footer-links">
       <a href="#why">Why us</a>
       <a href="#how">How it works</a>
@@ -1704,6 +1802,17 @@ h2{
   </footer>
 </div>
 
+
+<div class="pal-overlay" id="pal-overlay" role="dialog" aria-modal="true" aria-label="Palette from your image">
+  <div class="pal-modal">
+    <div class="pal-head">
+      <h3>Palette from your image</h3>
+      <button class="pal-x" id="pal-x" aria-label="Close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+    </div>
+    <div class="pal-prev" id="pal-prev"></div>
+    <div id="pal-body"></div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1726,7 +1835,7 @@ const P=[
   {n:"Lavender Mist",c:["#f7f0ff","#845ec2","#2e0057","#e8d5f5","#d2b4de"], bg:"#f7f0ff",hl:"#2e0057",para:"#4a1080",btn:"#845ec2",btnT:"#ffffff",cbg:"#e8d5f5",ch:"#2e0057",cp:"#4a1080",acc:"#6d3a9c",tbg:"#d2b4de",tt:"#2e0057",dark:"#2e0057",dk:"#4a1080"},
 ];
 
-let ai=11;
+let ai=0;
 
 function applyP(p){
   const s=document.documentElement.style;
@@ -1747,6 +1856,11 @@ function isLight(h){
   return(r*299+g*587+b*114)/1000>128;
 }
 
+function copyAllHues(){
+  const p=P[ai];
+  const rows=[['Background',p.bg],['Headline',p.hl],['Paragraph',p.para],['Button',p.btn],['Button text',p.btnT],['Card BG',p.cbg],['Card headline',p.ch],['Card paragraph',p.cp],['Accent',p.acc],['Tag BG',p.tbg],['Tag text',p.tt],['Dark background',p.dark],['Dark card',p.dk]];
+  copyHex(rows.map(r=>r[0]+': '+r[1]).join('\n'),'Copied all '+rows.length+' colors');
+}
 function renderHues(p){
   const groups=[
     {l:'Elements', items:[{n:'Background',c:p.bg},{n:'Headline',c:p.hl},{n:'Paragraph',c:p.para},{n:'Button',c:p.btn},{n:'Button text',c:p.btnT}]},
@@ -1754,7 +1868,7 @@ function renderHues(p){
     {l:'Accents',  items:[{n:'Accent',c:p.acc},{n:'Tag BG',c:p.tbg},{n:'Tag text',c:p.tt}]},
     {l:'Dark',     items:[{n:'Dark background',c:p.dark},{n:'Dark card',c:p.dk}]},
   ];
-  let h=`<div class="hp-head"><span class="hp-title">This palette's hues</span><span class="hp-sub">— click any chip to copy</span></div><div class="hp-groups">`;
+  let h=`<div class="hp-head"><span class="hp-title">This palette's hues</span><span class="hp-sub">— click any chip to copy</span><button class="hp-copyall" onclick="copyAllHues()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copy all</button></div><div class="hp-groups">`;
   groups.forEach(g=>{
     h+=`<div><div class="hp-glabel">${g.l}</div>`;
     g.items.forEach(i=>{
@@ -1771,7 +1885,8 @@ function makePill(p,i,cls,dotSize){
   const el=document.createElement('div');
   el.className=cls+(i===ai?' active':'');
   el.style.background=p.c[0];
-  const dots=p.c.map(col=>`<div class="pal-dot" style="background:${col};width:${dotSize}px;height:${dotSize}px;"></div>`).join('');
+  // first color equals the pill background, so only draw the 4 visible circles
+  const dots=p.c.slice(1).map(col=>`<div class="pal-dot" style="background:${col};width:${dotSize}px;height:${dotSize}px;"></div>`).join('');
   const extra=cls==='pal-pill'?`<div class="pal-tip">${p.n}</div>`:'';
   el.innerHTML=`<div class="pal-dots">${dots}</div>${extra}`;
   return el;
@@ -1782,7 +1897,7 @@ function buildSb(){
   sb.innerHTML=`
     <div class="sb-logo">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-        <rect width="40" height="40" rx="11" fill="#1a1a1a"/>
+        <rect width="40" height="40" rx="11" fill="rgba(0,0,0,.35)"/>
         <rect x="7" y="7" width="11" height="11" rx="3" fill="#ff8ba7"/>
         <rect x="22" y="7" width="11" height="11" rx="3" fill="#52b788"/>
         <rect x="7" y="22" width="11" height="11" rx="3" fill="#4a90d9"/>
@@ -1792,7 +1907,7 @@ function buildSb(){
     <div class="sb-lbl">Palettes</div>
   `;
   P.forEach((p,i)=>{
-    const el=makePill(p,i,'pal-pill',18);
+    const el=makePill(p,i,'pal-pill',30);
     el.addEventListener('mouseenter',()=>{
       const tip=el.querySelector('.pal-tip');
       if(tip) tip.style.top=(el.getBoundingClientRect().top+12)+'px';
@@ -1806,7 +1921,7 @@ function buildMobile(){
   const mg=document.getElementById('m-grid');
   mg.innerHTML='';
   P.forEach((p,i)=>{
-    const el=makePill(p,i,'m-pill',11);
+    const el=makePill(p,i,'m-pill',18);
     el.title=p.n;
     el.onclick=()=>{selP(i);closeDr();};
     mg.appendChild(el);
@@ -1836,10 +1951,10 @@ function toggleFaq(btn){
   document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
   if(!was)item.classList.add('open');
 }
-function copyHex(hex){
+function copyHex(hex,msg){
   navigator.clipboard.writeText(hex).catch(()=>{});
   const t=document.getElementById('toast');
-  t.textContent='Copied '+hex;
+  t.textContent=msg||('Copied '+hex);
   t.classList.add('show');
   clearTimeout(t._t);
   t._t=setTimeout(()=>t.classList.remove('show'),1600);
@@ -1892,7 +2007,7 @@ function initPro(){
   if(IS_PRO){
     // Show Pro badge, hide upgrade btn
     document.getElementById('pro-nav-badge').classList.add('show');
-    document.getElementById('nav-upgrade-btn').classList.add('hidden');
+    const _nb=document.getElementById('nav-upgrade-btn');if(_nb)_nb.classList.add('hidden');
     // Unlock design system section
     document.querySelectorAll('.pro-section').forEach(s=>s.classList.add('unlocked'));
     // Hide upgrade section
@@ -2175,7 +2290,7 @@ renderHues=function(p){
         <div style="font-size:0.72rem;color:var(--btnT);opacity:.72;margin-top:2px;transition:color 0.4s;">Pro exports CSS, Tailwind, JSON + dark mode tokens in one click.</div>
       </div>
       <a href="#upgrade" style="display:inline-flex;align-items:center;gap:6px;background:var(--bg);color:var(--btn);font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:800;padding:8px 18px;border-radius:999px;text-decoration:none;transition:background 0.4s,color 0.4s;">
-        Get Pro — $12/mo →
+        Get Pro — $5/mo →
       </a>
     `;
     hp.appendChild(proBanner);
@@ -2185,6 +2300,70 @@ renderHues=function(p){
 // Init everything
 initPro();
 if(IS_PRO) renderDesignSystem(P[ai]);
+
+// ── Reference image → palette ──
+(function(){
+  const drop=document.getElementById('ref-drop'),input=document.getElementById('ref-input');
+  const ov=document.getElementById('pal-overlay'),body=document.getElementById('pal-body'),prev=document.getElementById('pal-prev');
+  let url=null;
+  const hex=(r,g,b)=>'#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('').toUpperCase();
+  function close(){ov.classList.remove('open');if(url){URL.revokeObjectURL(url);url=null;}input.value='';}
+  document.getElementById('pal-x').onclick=close;
+  ov.addEventListener('click',e=>{if(e.target===ov)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contains('open'))close();});
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('drag');}));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('drag');}));
+  drop.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)handle(f);});
+  input.addEventListener('change',()=>{if(input.files[0])handle(input.files[0]);});
+
+  function extract(img){
+    const S=80,c=document.createElement('canvas');c.width=c.height=S;
+    const x=c.getContext('2d',{willReadFrequently:true});
+    const w=img.naturalWidth||300,h=img.naturalHeight||300,k=Math.min(S/w,S/h);
+    const dw=Math.max(1,Math.round(w*k)),dh=Math.max(1,Math.round(h*k));
+    x.drawImage(img,0,0,dw,dh);
+    const d=x.getImageData(0,0,dw,dh).data,bins={};
+    for(let i=0;i<d.length;i+=4){
+      if(d[i+3]<128)continue;
+      const key=(d[i]>>4)+','+(d[i+1]>>4)+','+(d[i+2]>>4);
+      const b=bins[key]||(bins[key]={n:0,r:0,g:0,b:0});
+      b.n++;b.r+=d[i];b.g+=d[i+1];b.b+=d[i+2];
+    }
+    const arr=Object.values(bins).map(b=>({n:b.n,r:Math.round(b.r/b.n),g:Math.round(b.g/b.n),b:Math.round(b.b/b.n)})).sort((a,b)=>b.n-a.n);
+    const out=[];
+    for(const c of arr){
+      if(out.every(o=>Math.hypot(o.r-c.r,o.g-c.g,o.b-c.b)>48))out.push(c);
+      if(out.length===6)break;
+    }
+    return out.map(c=>hex(c.r,c.g,c.b));
+  }
+
+  function handle(file){
+    if(!/^image\//.test(file.type)&&!/\.svg$/i.test(file.name)){showErr('Please upload an image or SVG file.');return;}
+    if(url)URL.revokeObjectURL(url);
+    url=URL.createObjectURL(file);
+    const img=new Image();
+    img.onload=()=>{
+      let cols=[];
+      try{cols=extract(img);}catch(e){}
+      prev.style.backgroundImage='url("'+url+'")';
+      if(!cols.length){body.innerHTML='<div class="pal-err">Couldn\'t read colors from this image.</div>';}
+      else render(cols);
+      ov.classList.add('open');
+    };
+    img.onerror=()=>showErr('Couldn\'t load that file.');
+    img.src=url;
+  }
+  function showErr(m){prev.style.backgroundImage='none';body.innerHTML='<div class="pal-err">'+m+'</div>';ov.classList.add('open');}
+
+  function render(cols){
+    body.innerHTML='<div class="pal-strip">'+cols.map(c=>'<div style="background:'+c+'"></div>').join('')+'</div>'+
+      '<div class="pal-list">'+cols.map(c=>'<button class="pal-row" data-hex="'+c+'"><span class="pal-sw" style="background:'+c+'"></span><span class="pal-hex">'+c+'</span><span class="pal-cp">Copy</span></button>').join('')+'</div>'+
+      '<div class="pal-actions"><button class="pal-copy" id="pal-copy-all">Copy all colors</button></div>';
+    body.querySelectorAll('.pal-row').forEach(b=>b.onclick=()=>copyHex(b.dataset.hex));
+    document.getElementById('pal-copy-all').onclick=()=>copyHex(cols.join(', '));
+  }
+})();
 </script>
 </body>
 </html>
