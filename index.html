@@ -1400,7 +1400,7 @@ h2{
 .dm-hero h5{font-size:1.35rem;font-weight:900;letter-spacing:-.03em;margin-bottom:4px;color:var(--c-dark);}
 .dm-hero p{font-size:.82rem;opacity:.7;margin-bottom:14px;color:var(--c-dark);}
 .dm-btn{display:inline-block;font-size:.76rem;font-weight:800;padding:9px 18px;border-radius:999px;background:var(--c-pri);color:#fff;margin-right:8px;transition:background .6s;}
-.dm-tag{display:inline-block;font-size:.68rem;font-weight:800;padding:5px 11px;border-radius:999px;background:var(--c-acc);color:var(--c-dark);transition:background .6s;}
+.dm-tag{display:inline-block;font-size:.68rem;font-weight:800;padding:5px 11px;border-radius:999px;background:var(--c-acc);color:var(--c-tagt,var(--c-dark));transition:background .6s;}
 .dm-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 .dm-cards div{height:70px;border-radius:12px;border:1.5px solid rgba(20,20,26,.14);overflow:hidden;}
 .dm-cards u{display:block;height:14px;transition:background .6s;}
@@ -1551,6 +1551,98 @@ h2{
 .pm-btn:hover{transform:translateY(-2px);}
 .pm-primary{background:#111827;color:#fff;}
 @media(max-width:560px){.pm-grid{grid-template-columns:1fr;}.nav-sep{display:none;}.nav-toggles{gap:6px;}.nav-icon-btn{width:34px;height:34px;}}
+
+/* ticker: match content width, soft faded edges */
+.ticker{border:0;background:transparent;padding:8px 0 40px;overflow:visible;}
+.tk-wrap{max-width:1100px;margin:0 auto;padding:0 64px;box-sizing:border-box;}
+.tk-mask{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);overflow:hidden;padding:6px 0;}
+@media(max-width:900px){.tk-wrap{padding:0 24px;}.ticker{padding-bottom:28px;}}
+
+/* ticker: equal white space above and below, vertically centered between hero and hues panel */
+.hero{padding-bottom:44px;}
+.ticker{padding:0 0 44px;}
+@media(max-width:900px){.hero{padding-bottom:32px;}.ticker{padding:0 0 32px;}}
+
+/* ticker band: fixed height like reference (line / 18px / pill / 18px / line) */
+.ticker,.ticker:is(*){padding:0 !important;background:var(--bg);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);overflow:hidden;}
+.tk-mask{padding:18px 0;}
+.tk-track{align-items:center;}
+@media(max-width:900px){.ticker{padding:0 !important;}}
+
+/* ── de-templated pass: quieter type, no ambient motion, less card kit ── */
+.hero-eyebrow,.eyebrow{background:none !important;border:0 !important;padding:0 !important;box-shadow:none !important;text-transform:none !important;letter-spacing:0 !important;font-size:.95rem !important;font-weight:600 !important;color:var(--acc) !important;margin-bottom:14px !important;}
+.sec-dark .eyebrow{color:rgba(255,255,255,.72) !important;}
+.eyebrow-dot,.eyebrow-dot::after{display:none !important;}
+.stat-label,.cw-badge,.pal-label,.sb-title{text-transform:none !important;letter-spacing:0 !important;}
+.hero h1 em{background:none !important;-webkit-text-fill-color:currentColor !important;color:inherit !important;animation:none !important;font-style:normal;}
+.hero::before,.hero::after,.cw::before,.vis-blob,.btn-primary::after,.step-num::after{display:none !important;}
+.vis,.vis-badge,.vis-av,.vis-line,.vis-card,.term-icon{animation:none !important;}
+.has-motion .rv:not(.in){opacity:1 !important;transform:none !important;}
+.rv,.rv.in{animation:none !important;}
+.ben-num{display:none !important;}
+.ben-card,.testi-card,.cw-card,.step,.stat-item,.term-card{box-shadow:none !important;border-radius:8px !important;transform:none !important;}
+.ben-card:hover,.testi-card:hover,.cw-card:hover,.step:hover,.term-card:hover{transform:none !important;box-shadow:none !important;}
+.term-icon{background:none !important;color:var(--acc) !important;width:auto !important;height:auto !important;border-radius:0 !important;justify-content:flex-start;}
+.btn-primary:hover svg{transform:none;}
+
+/* ── mobile pass ── */
+.main{overflow-x:hidden;}
+@media(max-width:1000px){
+  .vis-wrap{order:0 !important;}
+  .hero{padding-top:0 !important;}
+  .hero-inner{padding:36px 20px 32px !important;gap:32px !important;}
+  #btn-sidebar{display:none !important;}
+  .nav-inner{padding:0 16px;}
+}
+@media(max-width:640px){
+  .hero h1{font-size:2.3rem;line-height:1.05;}
+  .hero-actions{flex-direction:row !important;flex-wrap:nowrap !important;align-items:stretch !important;gap:10px !important;}
+  .hero-actions .btn-primary,.hero-actions .btn-ghost{flex:1 1 0;width:auto !important;min-width:0;padding:14px 12px;font-size:.95rem;white-space:nowrap;justify-content:center;text-align:center;}
+  .hero-note{justify-content:center;}
+  .testi-grid{grid-template-columns:1fr !important;}
+  .term-grid,.ben-grid,.trust-grid{grid-template-columns:1fr !important;}
+  .sec-inner,.ds-inner,.upgrade-inner{padding-left:20px !important;padding-right:20px !important;}
+}
+@media(max-width:430px){.nav-wordmark{display:none;}}
+
+@media(max-width:640px){
+  .stats-row{border:0 !important;border-radius:0 !important;display:grid !important;grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stats-row .stat-item{min-width:0 !important;border:1.5px solid var(--bdr) !important;border-radius:8px !important;margin:0 !important;padding:16px 8px !important;text-align:center;}
+  .stat-num{font-size:1.9rem !important;}
+  .stat-label{font-size:.76rem !important;}
+}
+
+/* ── about section: responsive ── */
+.about-sec{padding:104px 0;}
+.about-layout{grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:center;}
+.about-bio{max-width:640px;}
+.about-bio h2{font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.08;overflow-wrap:anywhere;}
+.about-bio p{font-size:clamp(.98rem,1.2vw,1.06rem);line-height:1.75;}
+.about-pfp-img{width:clamp(180px,22vw,280px);height:clamp(180px,22vw,280px);}
+@media(max-width:1180px){
+  .about-layout{grid-template-columns:1fr;gap:40px;justify-items:start;}
+  .about-bio{order:-1;max-width:640px;}
+  .about-pfp-col{order:0;justify-self:center;width:100%;max-width:420px;}
+  .about-sec{padding:72px 0;}
+}
+@media(max-width:640px){
+  .about-sec{padding:56px 0;}
+  .about-pfp-img{width:168px;height:168px;}
+  .about-bio h2{font-size:clamp(1.55rem,7.4vw,2rem);}
+}
+
+/* palette-size tabs: always one row */
+#cw-dtabs{flex-wrap:nowrap;gap:8px;}
+#cw-dtabs .cw-tab{flex:1 1 0;min-width:0;white-space:nowrap;text-align:center;padding:9px 6px;}
+@media(max-width:1280px){#cw-dtabs .cw-tab-x{display:none;}}@media(min-width:1001px) and (max-width:1280px){#cw-dtabs .cw-tab{font-size:.8rem;}}
+@media(max-width:380px){#cw-dtabs{gap:5px;}#cw-dtabs .cw-tab{font-size:.74rem;padding:9px 2px;}}
+
+/* centered section headers: center the label too */
+#pricing .eyebrow,#faq .eyebrow,.sec-inner:has(> h2[style*="text-align:center"]) > .eyebrow{display:flex !important;justify-content:center;text-align:center;}
+
+/* roadmap: breathing room below the hues panel */
+.roadmap{padding:72px 0 64px !important;}
+@media(max-width:900px){.roadmap{padding:48px 0 48px !important;}}
 </style>
 </head>
 <body>
@@ -1619,7 +1711,7 @@ h2{
     <div>
       <div class="hero-eyebrow"><span class="eyebrow-dot"></span>For Product Designers &amp; Developers</div>
       <h1>From palette to <em>design system</em> in one click.</h1>
-      <p class="hero-sub">ProductDesigner.xyz shows every palette in a real UI — and Pro turns it into production-ready CSS variables, Tailwind config, dark mode tokens, and UI components instantly.</p>
+      <p class="hero-sub">ProductDesigner.xyz shows every palette in a real UI, and Pro turns it into production-ready CSS variables, Tailwind config, dark mode tokens, and UI components instantly.</p>
       <div class="hero-actions">
         <button class="btn-primary" onclick="nextPalette()">Change Color <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         <a href="#upgrade" class="btn-ghost">Get Pro</a>
@@ -1668,7 +1760,7 @@ h2{
   </section>
 
   <!-- PALETTE TICKER -->
-  <div class="ticker" aria-label="Browse palettes"><div class="tk-mask"><div class="tk-track" id="tk-track"></div></div></div>
+  <div class="ticker" aria-label="Browse palettes"><div class="tk-wrap"><div class="tk-mask"><div class="tk-track" id="tk-track"></div></div></div></div>
 
   <!-- HUES PANEL -->
   <div class="hues-panel" id="hues-panel" style="padding:36px 0;"><div class="sec-inner" id="hues-panel-inner"></div></div>
@@ -1682,7 +1774,7 @@ h2{
         <li><a href="#color-wheel"><i class="rm-n">2</i><b>The wheel</b><small>Primary, secondary, tertiary</small></a></li>
         <li><a href="#harmonies"><i class="rm-n">3</i><b>Harmonies</b><small>Colors that work together</small></a></li>
         <li><a href="#psychology"><i class="rm-n">4</i><b>Meaning</b><small>What each color says</small></a></li>
-        <li><a href="#palette-size"><i class="rm-n">5</i><b>Palette</b><small>4 or 5 colors</small></a></li>
+        <li><a href="#palette-size"><i class="rm-n">5</i><b>Palette</b><small>2 to 5 colors</small></a></li>
         <li><a href="#put-to-work"><i class="rm-n">6</i><b>Apply</b><small>60-30-10 and testing</small></a></li>
       </ol>
     </div>
@@ -1691,15 +1783,15 @@ h2{
   <!-- TERMINOLOGY -->
   <section class="sec" id="why">
     <div class="sec-inner">
-    <div class="eyebrow"><span class="eyebrow-dot"></span>Step 1 · Color basics</div>
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Step 1: Color basics</div>
     <h2>Color terminology</h2>
     <p class="sec-lead">Think of these as the levers you pull to craft any color with precision and intention in your design work.</p>
     <div class="term-grid">
-      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg></div><h3>Hue</h3><p>The parent color in its purest, fully saturated form — no white or black added. The true version of any color on the spectrum.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1" fill="currentColor" stroke="none"/></svg></div><h3>Hue</h3><p>The parent color in its purest, fully saturated form, no white or black added. The true version of any color on the spectrum.</p></div>
       <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div><h3>Tint</h3><p>A hue with white added. In Figma or Sketch, lower the saturation slider to push a color toward a lighter, softer tint.</p></div>
       <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></div><h3>Shade</h3><p>A hue with black added. Lower the brightness value in your design tool to shift a color into deeper, darker shadow territory.</p></div>
-      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 10a4 4 0 00-4-4 6 6 0 00-6 6H3"/><path d="M4 14h16"/><path d="M4 18h12"/></svg></div><h3>Tone</h3><p>Between tint and shade — grey is added, softening the natural vibrancy into something more muted and sophisticated.</p></div>
-      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17H8v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/></svg></div><h3>Value</h3><p>How light or dark a color appears — the measure of how much light it reflects or seems to emit to the eye of the viewer.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M18 10a4 4 0 00-4-4 6 6 0 00-6 6H3"/><path d="M4 14h16"/><path d="M4 18h12"/></svg></div><h3>Tone</h3><p>Between tint and shade, grey is added, softening the natural vibrancy into something more muted and sophisticated.</p></div>
+      <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M9 18h6M10 22h4M12 2a7 7 0 017 7c0 2.38-1.19 4.47-3 5.74V17H8v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 017-7z"/></svg></div><h3>Value</h3><p>How light or dark a color appears, the measure of how much light it reflects or seems to emit to the eye of the viewer.</p></div>
       <div class="term-card"><div class="term-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Saturation</h3><p>The purity and intensity of a color. High saturation is vivid and bold. Low saturation reads as muted, desaturated, or grey.</p></div>
     </div>
     <a class="learn-next" href="#color-wheel">Next: The color wheel <span aria-hidden="true">↓</span></a>
@@ -1709,7 +1801,7 @@ h2{
   <!-- STEP 2: COLOR WHEEL -->
   <section class="sec sec-dark cw" id="color-wheel">
     <div class="sec-inner">
-      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 2 · The color wheel</div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 2: The color wheel</div>
       <h2>The color wheel, explained</h2>
       <p class="sec-lead">Colors are how our eyes perceive different lightwave lengths. In 1666, Sir Isaac Newton identified three color groups. Watch how each one is built from the last.</p>
       <button class="cw-play" type="button" aria-pressed="false"><span class="cw-play-ic" aria-hidden="true"></span><span class="cw-play-t">Pause motion</span></button>
@@ -1746,7 +1838,7 @@ h2{
   <!-- STEP 3: HARMONIES -->
   <section class="sec sec-dark cw cw-alt" id="harmonies">
     <div class="sec-inner">
-      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 3 · Color harmonies</div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 3: Color harmonies</div>
       <h2>Color theory &amp; harmonies</h2>
       <p class="sec-lead">In visual arts, there are various attempts to explain what colors go together. These are known as color theory. A basic concept is color harmony: a set of colors that work well together. Think of harmonies as the building blocks, or the underlying template, of a color palette.</p>
       <button class="cw-play" type="button" aria-pressed="false"><span class="cw-play-ic" aria-hidden="true"></span><span class="cw-play-t">Pause motion</span></button>
@@ -1781,7 +1873,7 @@ h2{
   <!-- PSYCHOLOGY -->
   <section class="sec sec-alt" id="psychology">
     <div class="sec-inner">
-    <div class="eyebrow"><span class="eyebrow-dot"></span>Step 4 · What colors mean</div>
+    <div class="eyebrow"><span class="eyebrow-dot"></span>Step 4: What colors mean</div>
     <h2>The psychology of color</h2>
     <p class="sec-lead">Every color triggers a feeling. Know what each one says before you pick your palette.</p>
     <div class="psych-cards">
@@ -1798,7 +1890,7 @@ h2{
   <!-- STEP 5: PALETTE SIZE -->
   <section class="sec sec-dark cw" id="palette-size">
     <div class="sec-inner">
-      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 5 · Choose your palette</div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 5: Choose your palette</div>
       <h2>How many colors do you actually need?</h2>
       <p class="sec-lead">Palette size is a decision about focus. Choose the smallest set that gets the job done, then think about where each color goes.</p>
       <button class="cw-play" type="button" aria-pressed="false"><span class="cw-play-ic" aria-hidden="true"></span><span class="cw-play-t">Pause motion</span></button>
@@ -1838,7 +1930,7 @@ h2{
   <!-- STEP 6: PUT IT TO WORK -->
   <section class="sec sec-dark cw cw-alt" id="put-to-work">
     <div class="sec-inner">
-      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 6 · Put it to work</div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Step 6: Put it to work</div>
       <h2>From theory to a working palette</h2>
       <p class="sec-lead">Pick, build, test and apply. Here is how a palette goes from idea to interface.</p>
       <button class="cw-play" type="button" aria-pressed="false"><span class="cw-play-ic" aria-hidden="true"></span><span class="cw-play-t">Pause motion</span></button>
@@ -1925,11 +2017,11 @@ h2{
     <div class="sec-inner">
     <div class="eyebrow"><span class="eyebrow-dot"></span>Simple as 1-2-3</div>
     <h2>How it works.</h2>
-    <p class="sec-lead">No tutorial needed. You'll figure it out in 10 seconds — but here's the full breakdown anyway.</p>
+    <p class="sec-lead">No tutorial needed. You'll figure it out in 10 seconds, but here's the full breakdown anyway.</p>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><h3>Pick a palette from the sidebar</h3><p>Click any of the 16 palette swatches on the left. Each shows 5 real colors from the system so you know what you're choosing before you commit.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Watch the entire page update instantly</h3><p>The full mockup — hero, cards, dark sections, footer — all re-skin in real time. You see exactly how the palette behaves in a real product UI.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Copy the hex codes and ship</h3><p>Click any chip in the hues panel to copy the hex. Paste straight into Figma, Tailwind, or VS Code — wherever you build your products.</p></div>
+      <div class="step"><div class="step-num">1</div><h3>Pick a palette</h3><p>Tap or click any of the 16 palettes. Each shows 5 real colors from the system so you know what you're choosing before you commit.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Watch the entire page update instantly</h3><p>The full mockup, hero, cards, dark sections, footer, all re-skin in real time. You see exactly how the palette behaves in a real product UI.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Copy the hex codes and ship</h3><p>Click any chip in the hues panel to copy the hex. Paste straight into Figma, Tailwind, or VS Code, wherever you build your products.</p></div>
     </div>
     </div>
   </section>
@@ -1941,7 +2033,7 @@ h2{
     <div class="ds-inner">
       <div class="eyebrow"><span class="eyebrow-dot"></span>Pro feature</div>
       <h2>Your design system,<br>generated instantly.</h2>
-      <p class="sec-lead">Select any palette and Pro builds a complete, developer-ready design system — color roles, dark mode, semantic states, UI components, and export-ready code.</p>
+      <p class="sec-lead">Select any palette and Pro builds a complete, developer-ready design system, color roles, dark mode, semantic states, UI components, and export-ready code.</p>
 
       <div class="pro-blur-target">
         <div class="ds-grid">
@@ -1955,16 +2047,16 @@ h2{
             <div class="ds-card-title">Semantic states</div>
             <div class="ds-components" id="ds-semantics">
               <div class="ds-comp-row">
-                <div class="ds-alert success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Success — action completed</div>
+                <div class="ds-alert success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Success, action completed</div>
               </div>
               <div class="ds-comp-row">
-                <div class="ds-alert warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>Warning — check this</div>
+                <div class="ds-alert warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>Warning, check this</div>
               </div>
               <div class="ds-comp-row">
-                <div class="ds-alert error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Error — something went wrong</div>
+                <div class="ds-alert error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Error, something went wrong</div>
               </div>
               <div class="ds-comp-row">
-                <div class="ds-alert info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Info — good to know</div>
+                <div class="ds-alert info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Info, good to know</div>
               </div>
             </div>
           </div>
@@ -2034,7 +2126,7 @@ h2{
         <div class="pro-gate-label">Unlock Design System Generator</div>
         <div class="pro-gate-sub">Get CSS variables, Tailwind config, dark mode tokens &amp; UI previews</div>
         <a href="#upgrade" class="pro-gate-btn">
-          Get Pro — $5/mo
+          Get Pro, $5/mo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <div class="pro-gate-note">Cancel anytime · No account needed · Works in browser</div>
@@ -2058,17 +2150,17 @@ h2{
         Upgrade to Pro
       </div>
       <h2 class="upgrade-h">Stop copying hex codes.<br>Start shipping design systems.</h2>
-      <p class="upgrade-sub">Pro turns any palette into a complete, developer-ready design system — CSS variables, Tailwind config, dark mode mapping, and UI component previews — in one click.</p>
+      <p class="upgrade-sub">Pro turns any palette into a complete, developer-ready design system, CSS variables, Tailwind config, dark mode mapping, and UI component previews, in one click.</p>
 
       <a id="stripe-upgrade-btn" href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="upgrade-cta-btn">
-        Get Pro — $5/mo
+        Get Pro, $5/mo
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <div class="upgrade-note">$5/month · Cancel anytime · Unlock on this browser instantly after payment</div>
 
       <div class="upgrade-compare">
         <div class="upgrade-col">
-          <div class="upgrade-col-title">Free — Starter</div>
+          <div class="upgrade-col-title">Free, Starter</div>
           <div class="upgrade-feat free-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>16 curated palettes</div>
           <div class="upgrade-feat free-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Live UI preview mockup</div>
           <div class="upgrade-feat free-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Copy individual hex codes</div>
@@ -2078,7 +2170,7 @@ h2{
           <div class="upgrade-feat" style="color:rgba(255,255,255,.25);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="opacity:.3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Dark mode token mapping</div>
         </div>
         <div class="upgrade-col pro-col">
-          <div class="upgrade-col-title">Pro — $5/month</div>
+          <div class="upgrade-col-title">Pro, $5/month</div>
           <div class="upgrade-feat pro-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Everything in Free</div>
           <div class="upgrade-feat pro-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Design system generator</div>
           <div class="upgrade-feat pro-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>CSS variables export</div>
@@ -2139,7 +2231,7 @@ h2{
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>JSON design tokens</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>Dark mode auto-mapping</li>
         </ul>
-        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Pro — $5/mo</a>
+        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Pro, $5/mo</a>
       </div>
 
       <!-- TEAM -->
@@ -2159,7 +2251,7 @@ h2{
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>Admin &amp; role management</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>Dedicated account manager</li>
         </ul>
-        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Team — $19/mo</a>
+        <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="price-btn" style="display:block;text-align:center;text-decoration:none;">Get Team, $19/mo</a>
       </div>
 
     </div>
@@ -2174,8 +2266,8 @@ h2{
     <div class="trust-grid">
       <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><h4>No account required</h4><p>Zero personal data collected. No email, no tracking, no cookies.</p></div>
       <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.739-8z"/></svg></div><h4>Free forever</h4><p>All 16 palettes, all hex codes, all features. No freemium bait-and-switch.</p></div>
-      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h4>Curated, not generated</h4><p>Every palette hand-picked by a working product designer — not an algorithm.</p></div>
-      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h4>Real contact info</h4><p>info@productdesigner.xyz — a real human replies within 24h.</p></div>
+      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><h4>Curated, not generated</h4><p>Every palette hand-picked by a working product designer, not an algorithm.</p></div>
+      <div class="trust-badge"><div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><h4>Real contact info</h4><p>info@productdesigner.xyz, a real human replies within 24h.</p></div>
     </div>
     </div>
   </section>
@@ -2187,13 +2279,13 @@ h2{
     <h2 style="text-align:center;margin-bottom:14px;">Frequently asked questions.</h2>
     <p class="sec-lead" style="text-align:center;margin:0 auto 56px;">We've answered the most common hesitations right here.</p>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is it really free? What's the catch?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">The palette browser is free forever — all 16 palettes, all hex codes, no account needed. Pro ($5/mo) unlocks the design system generator, export tools, and dark mode mapping.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does Pro unlock work — is there an account?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">No account needed. After paying, you're redirected to a success page with a single "Unlock Pro on this device" button. Click it and Pro features are instantly available. To use Pro on another device, visit the success page URL on that device too.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use these palettes in commercial projects?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Absolutely. Colors aren't copyrightable. Use any palette in any project — personal or commercial — without attribution required. A mention is always appreciated though!</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How is this different from other apps?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Other tools show abstract swatches. We show colors in a real UI — hero sections, cards, dark backgrounds, navigation, footers. Each color also has a defined role so it maps directly into your design system.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is it really free? What's the catch?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">The palette browser is free forever, all 16 palettes, all hex codes, no account needed. Pro ($5/mo) unlocks the design system generator, export tools, and dark mode mapping.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How does Pro unlock work, is there an account?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">No account needed. After paying, you're redirected to a success page with a single "Unlock Pro on this device" button. Click it and Pro features are instantly available. To use Pro on another device, visit the success page URL on that device too.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use these palettes in commercial projects?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Absolutely. Colors aren't copyrightable. Use any palette in any project, personal or commercial, without attribution required. A mention is always appreciated though!</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How is this different from other apps?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Other tools show abstract swatches. We show colors in a real UI, hero sections, cards, dark backgrounds, navigation, footers. Each color also has a defined role so it maps directly into your design system.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you plan to add more palettes?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes. New palettes are added regularly based on design trends and community requests. Follow Fajar on social media to get notified when new ones drop.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I request a custom palette for my brand?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Custom palette creation and full design system consulting is available as a paid service. Reach out to info@productdesigner.xyz and we'll talk through options and pricing.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on mobile?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes — fully responsive. On mobile the sidebar is replaced by a "Change Palette" button at the bottom of the screen. Tap it to open a drawer with all 16 palettes in a grid.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on mobile?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes, fully responsive. On mobile the sidebar is replaced by a "Change Palette" button at the bottom of the screen. Tap it to open a drawer with all 16 palettes in a grid.</div></div>
     </div>
     </div>
   </section>
@@ -2202,7 +2294,7 @@ h2{
   <div class="cta-banner">
     <h2>Stop guessing. Start shipping<br>with design systems that work.</h2>
     <p>Browse free. Export with Pro. No account needed.</p>
-    <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn-white">Get Pro — $5/mo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn-white">Get Pro, $5/mo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
 
   <!-- ABOUT / FOUNDER -->
@@ -2255,7 +2347,7 @@ h2{
 
       <!-- RIGHT: bio -->
       <div class="about-bio">
-        <div class="eyebrow" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);"><span style="width:6px;height:6px;border-radius:50%;background:var(--btn);display:inline-block;transition:background 0.4s;"></span>The person behind it</div>
+        <div class="eyebrow" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);">The person behind it</div>
         <h2>Who's behind<br>ProductDesigner.xyz?</h2>
         <p>Hi, I'm <strong>Fajar Siddiq</strong>, the creator of ProductDesigner.xyz. I'm a serial entrepreneur based in Singapore who builds digital products, brands and landing pages. I made this tool for my own projects, to pick colors faster and see them in a real UI. Now I'm sharing it so you can do the same.</p>
       </div>
@@ -2358,7 +2450,7 @@ function renderHues(p){
     {l:'Accents',  items:[{n:'Accent',c:p.acc},{n:'Tag BG',c:p.tbg},{n:'Tag text',c:p.tt}]},
     {l:'Dark',     items:[{n:'Dark background',c:p.dark},{n:'Dark card',c:p.dk}]},
   ];
-  let h=`<div class="hp-head"><span class="hp-title">This palette's hues</span><span class="hp-sub">— click any chip to copy</span><button class="hp-copyall" onclick="copyAllHues()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copy all</button></div><div class="hp-groups">`;
+  let h=`<div class="hp-head"><span class="hp-title">This palette's hues</span><span class="hp-sub">Click any chip to copy</span><button class="hp-copyall" onclick="copyAllHues()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copy all</button></div><div class="hp-groups">`;
   groups.forEach(g=>{
     h+=`<div><div class="hp-glabel">${g.l}</div>`;
     g.items.forEach(i=>{
@@ -2744,7 +2836,7 @@ function downloadExport(type){
 function setDsMode(mode, btn){
   document.querySelectorAll('.ds-mode-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  // Light/dark mode preview toggle (visual only — not full impl)
+  // Light/dark mode preview toggle (visual only, not full impl)
   const preview=document.getElementById('ds-comp-preview');
   if(!preview) return;
   if(mode==='dark'){
@@ -2780,7 +2872,7 @@ renderHues=function(p){
         <div style="font-size:0.72rem;color:var(--btnT);opacity:.72;margin-top:2px;transition:color 0.4s;">Pro exports CSS, Tailwind, JSON + dark mode tokens in one click.</div>
       </div>
       <a href="#upgrade" style="display:inline-flex;align-items:center;gap:6px;background:var(--bg);color:var(--btn);font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:800;padding:8px 18px;border-radius:999px;text-decoration:none;transition:background 0.4s,color 0.4s;">
-        Get Pro — $5/mo →
+        Get Pro, $5/mo →
       </a>
     `;
     hp.appendChild(proBanner);
@@ -2985,10 +3077,14 @@ applyStep(0);showH();syncBtn();
 (function(){
 const C={light:'#f5f4ef',dark:'#14141a',pri:'#3b5bdb',acc:'#ff4f8b',acc2:'#f9c74f'};
 const D=[
+ {name:'2-color palette',badge:'Simple & bold',desc:'Works for landing pages, posters, or a single-purpose tool. One light neutral for backgrounds and one strong color that carries the text, buttons, and links. Everything else is a tint or shade of those two.',
+  roles:[['light','Light neutral','Backgrounds',70],['pri','Brand color','Text, buttons, links, logo',30]],m:{dark:C.pri,acc:C.pri,acc2:C.pri,tagt:'#ffffff'}},
+ {name:'3-color palette',badge:'Clean & balanced',desc:'A reliable starting point for most products and marketing sites. A light neutral for backgrounds, a dark neutral for text, and one primary color for buttons and key actions.',
+  roles:[['light','Light neutral','Backgrounds',65],['dark','Dark neutral','Text',20],['pri','Primary','Brand, buttons, highlights',15]],m:{dark:C.dark,acc:C.pri,acc2:C.pri,tagt:'#ffffff'}},
  {name:'4-color palette',badge:'Minimal & focused',desc:'Works well for minimal or focused sites. A common setup is 1 primary color, 1 accent color, 1 light neutral (backgrounds), and 1 dark neutral (text).',
-  roles:[['light','Light neutral','Backgrounds',60],['dark','Dark neutral','Text',15],['pri','Primary','Brand, main buttons',15],['acc','Accent','Highlights, tags',10]],acc2:C.acc},
+  roles:[['light','Light neutral','Backgrounds',60],['dark','Dark neutral','Text',15],['pri','Primary','Brand, main buttons',15],['acc','Accent','Highlights, tags',10]],m:{dark:C.dark,acc:C.acc,acc2:C.acc,tagt:C.dark}},
  {name:'5-color palette',badge:'Large & complex',desc:'Gives extra flexibility for larger sites, e-commerce, or complex UI. A common setup is 1 primary brand color, 1–2 accent/secondary colors (for buttons, tags, or highlights), and 1–2 neutrals for backgrounds, borders, and text.',
-  roles:[['light','Light neutral','Backgrounds, borders',55],['dark','Dark neutral','Text',15],['pri','Primary brand','Brand, main buttons',15],['acc','Accent','Buttons, highlights',10],['acc2','Secondary accent','Tags, badges',5]],acc2:C.acc2}
+  roles:[['light','Light neutral','Backgrounds, borders',55],['dark','Dark neutral','Text',15],['pri','Primary brand','Brand, main buttons',15],['acc','Accent','Buttons, highlights',10],['acc2','Secondary accent','Tags, badges',5]],m:{dark:C.dark,acc:C.acc,acc2:C.acc2,tagt:C.dark}}
 ];
 const lum=h=>{const c=[1,3,5].map(i=>{const v=parseInt(h.slice(i,i+2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);});return .2126*c[0]+.7152*c[1]+.0722*c[2];};
 const ratio=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
@@ -2996,7 +3092,7 @@ const lvl=r=>r>=7?'AAA':r>=4.5?'AA':r>=3?'AA large':'Fail';
 const tabs=document.getElementById('cw-dtabs'),roles=document.getElementById('cw-roles'),bar=document.getElementById('cw-dbar'),mock=document.getElementById('cw-dmock'),cr=document.getElementById('cw-cr');
 if(!tabs)return;
 let di=0,lock=0;
-D.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.className='cw-tab';b.textContent=d.name;b.setAttribute('role','tab');b.addEventListener('click',()=>{di=i;lock=Date.now()+14000;show();});tabs.appendChild(b);});
+D.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.className='cw-tab';b.innerHTML=d.name.replace(' palette','<span class="cw-tab-x"> palette</span>');b.setAttribute('role','tab');b.addEventListener('click',()=>{di=i;lock=Date.now()+14000;show();});tabs.appendChild(b);});
 function show(){
   const d=D[di];
   [...tabs.children].forEach((b,i)=>b.classList.toggle('on',i===di));
@@ -3013,8 +3109,8 @@ function show(){
     e.style.background=C[e.dataset.k];e.style.color=lum(C[e.dataset.k])>.4?'#14141a':'#fff';
     e.textContent=r&&r[3]>=10?r[3]+'%':'';
   });
-  mock.style.setProperty('--c-acc2',d.acc2);
-  const t=ratio(C.dark,C.light),b=ratio('#ffffff',C.pri),g=ratio(C.dark,C.acc);
+  ['dark','acc','acc2','tagt'].forEach(k=>mock.style.setProperty('--c-'+k,d.m[k]));
+  const t=ratio(d.m.dark,C.light),b=ratio('#ffffff',C.pri),g=ratio(d.m.tagt,d.m.acc);
   cr.innerHTML=`<span>Text on background<b>${t.toFixed(1)}:1 ${lvl(t)}</b></span><span>Button text<b>${b.toFixed(1)}:1 ${lvl(b)}</b></span><span>Tag text<b>${g.toFixed(1)}:1 ${lvl(g)}</b></span>`;
 }
 show();
