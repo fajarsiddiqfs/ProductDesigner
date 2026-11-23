@@ -203,6 +203,16 @@ body{font-family:'Inter',sans-serif;display:flex;background:#111;height:100dvh;o
 .main::-webkit-scrollbar{width:5px;}
 .main::-webkit-scrollbar-thumb{background:rgba(0,0,0,.14);border-radius:3px;}
 
+
+/* ── SPONSOR BAR ── */
+.sponsor-bar{background:#0a0a0a;color:#fff;font-size:.8rem;line-height:1.4;text-align:center;padding:9px 16px;position:relative;z-index:51;}
+.sponsor-bar a{color:#fff;text-decoration:none;display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 8px;}
+.sponsor-bar .sp-tag{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:2px 8px;border-radius:99px;}
+.sponsor-bar strong{font-weight:700;border-bottom:1px solid rgba(255,255,255,.5);}
+.sponsor-bar .sp-desc{opacity:.78;}
+.sponsor-bar a:hover strong{border-bottom-color:#fff;}
+@media(max-width:640px){.sponsor-bar{font-size:.72rem;padding:8px 12px;}.sponsor-bar .sp-desc{display:none;}}
+
 /* ── NAV ── */
 .nav{
   position:sticky;top:0;z-index:50;
@@ -1887,6 +1897,14 @@ h2{
 
 <!-- MAIN -->
 <div class="main" id="main">
+
+  <div class="sponsor-bar">
+    <a href="https://supermakers.xyz/" target="_blank" rel="sponsored noopener">
+      <span class="sp-tag">Sponsored by</span>
+      <strong>Supermakers</strong>
+      <span class="sp-desc">— an independent digital product studio building, launching and operating useful internet products.</span>
+    </a>
+  </div>
 
   <nav class="nav">
     <div class="nav-inner">
