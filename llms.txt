@@ -1,0 +1,8 @@
+
+# Producy Designer
+
+> ProductDesigner.xyz shows every palette in a real UI, and Pro turns it into production-ready CSS variables, Tailwind config, dark mode tokens, and UI components instantly.
+
+## For AI Designers, UI/UX Designers & Vibe Coders
+
+It's a free color palette tool for people who build interfaces. You pick from curated palettes and see them applied to a real UI mockup instead of flat swatches. Each palette has 13 color roles (background, headline, button, card, tag and so on) with HEX codes you can copy. Pro adds a design system export: CSS variables, Tailwind config, dark mode tokens and UI components. It also exports the palette as an AI prompt or a .md file you can paste into Claude, ChatGPT or Cursor. The page teaches color basics too: hue, tint, shade, the color wheel, harmonies, color meaning, and the 60-30-10 rule.
