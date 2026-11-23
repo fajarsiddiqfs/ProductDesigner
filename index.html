@@ -1643,6 +1643,33 @@ h2{
 /* roadmap: breathing room below the hues panel */
 .roadmap{padding:72px 0 64px !important;}
 @media(max-width:900px){.roadmap{padding:48px 0 48px !important;}}
+
+.hero h1 .hl-click{color:var(--acc);transition:color .4s;}
+
+.hero-actions .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+.hero-actions .btn-ghost svg{transition:transform .25s;}
+.hero-actions .btn-ghost:hover svg{transform:translateX(5px);}
+.hero-actions .btn-primary svg{flex-shrink:0;}
+@media(max-width:640px){.hero-actions .btn-primary,.hero-actions .btn-ghost{gap:6px;}}
+
+/* AI export buttons */
+.hp-btns{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.hp-btns .hp-copyall{margin-left:0;}
+.hp-copyall.hp-alt{background:transparent;color:var(--hl);box-shadow:inset 0 0 0 1.5px var(--bdr);}
+.pm-btn.pm-ai{min-width:140px;}
+.pal-copy.pal-alt{background:#fff;color:#111827;border:1.5px solid #111827;}
+.pal-actions{flex-wrap:wrap;}
+.pal-actions .pal-copy{flex:1 1 140px;}
+@media(max-width:640px){.hp-btns{margin-left:0;width:100%;}.hp-btns .hp-copyall{flex:1 1 auto;justify-content:center;padding:11px 14px;}}
+
+.pm-actions{display:grid !important;grid-template-columns:1fr 1fr;gap:10px;}
+.pm-actions .pm-btn{min-width:0 !important;}
+
+.nav-icon{background:none !important;border-radius:11px;overflow:hidden;}
+.nav-icon svg{display:block;}
+
+.hero-eyebrow{white-space:nowrap;max-width:100%;}
+@media(max-width:640px){.hero-eyebrow{font-size:clamp(.72rem,3.7vw,.95rem) !important;}}
 </style>
 </head>
 <body>
@@ -1670,11 +1697,12 @@ h2{
     <div class="nav-inner">
     <a href="#" class="nav-brand">
       <div class="nav-icon">
-        <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
-          <rect x="3" y="3" width="8" height="8" rx="2" fill="white" opacity="0.9"/>
-          <rect x="13" y="3" width="8" height="8" rx="2" fill="white" opacity="0.6"/>
-          <rect x="3" y="13" width="8" height="8" rx="2" fill="white" opacity="0.55"/>
-          <rect x="13" y="13" width="8" height="8" rx="2" fill="white" opacity="0.3"/>
+        <svg viewBox="0 0 40 40" fill="none" width="34" height="34" aria-hidden="true">
+          <rect width="40" height="40" rx="11" fill="#17102b"/>
+          <rect x="7" y="7" width="11" height="11" rx="3" fill="#ff8ba7"/>
+          <rect x="22" y="7" width="11" height="11" rx="3" fill="#52b788"/>
+          <rect x="7" y="22" width="11" height="11" rx="3" fill="#4a90d9"/>
+          <rect x="22" y="22" width="11" height="11" rx="3" fill="#f9a825"/>
         </svg>
       </div>
       <span class="nav-wordmark">Product Designer</span>
@@ -1709,12 +1737,12 @@ h2{
   <section class="hero" id="hero">
     <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>For Product Designers &amp; Developers</div>
-      <h1>From palette to <em>design system</em> in one click.</h1>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>For AI Designers, UI/UX Designers &amp; Vibe Coders</div>
+      <h1>From palette to design system in <span class="hl-click">one click</span>.</h1>
       <p class="hero-sub">ProductDesigner.xyz shows every palette in a real UI, and Pro turns it into production-ready CSS variables, Tailwind config, dark mode tokens, and UI components instantly.</p>
       <div class="hero-actions">
         <button class="btn-primary" onclick="nextPalette()">Change Color <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" style="display:inline;vertical-align:middle"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-        <a href="#upgrade" class="btn-ghost">Get Pro</a>
+        <a href="#upgrade" class="btn-ghost">Get Pro, $5/mo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14" aria-hidden="true" style="flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <div class="hero-note-wrap"><p class="hero-note">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><b class="n-long">Free palette browser</b><b class="n-short">Free browser</b></span>
@@ -2094,6 +2122,7 @@ h2{
               <button class="export-tab active" onclick="setExportTab('css',this)">CSS vars</button>
               <button class="export-tab" onclick="setExportTab('tailwind',this)">Tailwind</button>
               <button class="export-tab" onclick="setExportTab('json',this)">JSON tokens</button>
+              <button class="export-tab" onclick="setExportTab('ai',this)">AI prompt</button>
             </div>
             <div class="export-block" style="border-radius:0;min-height:180px;" id="export-code-wrap">
               <pre id="export-code-pre"></pre>
@@ -2111,6 +2140,10 @@ h2{
               <button class="export-dl-btn" onclick="downloadExport('json')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 tokens.json
+              </button>
+              <button class="export-dl-btn" onclick="downloadExport('md')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                palette.md
               </button>
             </div>
           </div>
@@ -2285,6 +2318,7 @@ h2{
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How is this different from other apps?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Other tools show abstract swatches. We show colors in a real UI, hero sections, cards, dark backgrounds, navigation, footers. Each color also has a defined role so it maps directly into your design system.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you plan to add more palettes?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes. New palettes are added regularly based on design trends and community requests. Follow Fajar on social media to get notified when new ones drop.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I request a custom palette for my brand?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Custom palette creation and full design system consulting is available as a paid service. Reach out to info@productdesigner.xyz and we'll talk through options and pricing.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I use my palette in Claude or ChatGPT?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes. Choose Copy AI prompt, paste it into Claude, ChatGPT or Cursor, and say what you want to build. Or download the palette as a .md file and attach it to a chat or add it to your project as DESIGN.md. It includes every color, a contrast check, CSS variables, Tailwind colors and usage rules, so the AI sticks to your palette.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does it work on mobile?<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-a">Yes, fully responsive. On mobile the sidebar is replaced by a "Change Palette" button at the bottom of the screen. Tap it to open a drawer with all 16 palettes in a grid.</div></div>
     </div>
     </div>
@@ -2386,11 +2420,13 @@ h2{
       <button class="pal-x" id="pm-x" aria-label="Close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
     </div>
     <div class="pm-strip" id="pm-strip"></div>
-    <p class="pm-hint">Click any color to copy its code.</p>
+    <p class="pm-hint">Click any color to copy its code, or copy the whole palette as a prompt for Claude or ChatGPT.</p>
     <div class="pm-grid" id="pm-grid"></div>
     <div class="pm-actions">
       <button type="button" class="pm-btn pm-primary" id="pm-copy-all">Copy all codes</button>
       <button type="button" class="pm-btn" id="pm-copy-hex">Copy HEX only</button>
+      <button type="button" class="pm-btn pm-ai" id="pm-copy-ai">Copy AI prompt</button>
+      <button type="button" class="pm-btn pm-ai" id="pm-dl-md">Download .md</button>
     </div>
   </div>
 </div>
@@ -2450,7 +2486,7 @@ function renderHues(p){
     {l:'Accents',  items:[{n:'Accent',c:p.acc},{n:'Tag BG',c:p.tbg},{n:'Tag text',c:p.tt}]},
     {l:'Dark',     items:[{n:'Dark background',c:p.dark},{n:'Dark card',c:p.dk}]},
   ];
-  let h=`<div class="hp-head"><span class="hp-title">This palette's hues</span><span class="hp-sub">Click any chip to copy</span><button class="hp-copyall" onclick="copyAllHues()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copy all</button></div><div class="hp-groups">`;
+  let h=`<div class="hp-head"><span class="hp-title">This palette's hues</span><span class="hp-sub">Click any chip to copy</span><div class="hp-btns"><button class="hp-copyall" onclick="copyAllHues()"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>Copy all</button><button class="hp-copyall hp-alt" onclick="PDAI.copyPrompt(P[ai])">Copy AI prompt</button><button class="hp-copyall hp-alt" onclick="PDAI.download(P[ai])">.md</button></div></div><div class="hp-groups">`;
   groups.forEach(g=>{
     h+=`<div><div class="hp-glabel">${g.l}</div>`;
     g.items.forEach(i=>{
@@ -2793,6 +2829,7 @@ function renderExportCode(ds, tab){
   if(!pre) return;
   if(tab==='css') pre.textContent=getCSSExport(ds);
   else if(tab==='tailwind') pre.textContent=getTailwindExport(ds);
+  else if(tab==='ai') pre.textContent=PDAI.prompt(P[ai]);
   else pre.textContent=getJSONExport(ds);
 }
 
@@ -2808,6 +2845,7 @@ function copyExport(){
   let txt='';
   if(currentExportTab==='css') txt=getCSSExport(currentDS);
   else if(currentExportTab==='tailwind') txt=getTailwindExport(currentDS);
+  else if(currentExportTab==='ai') txt=PDAI.prompt(P[ai]);
   else txt=getJSONExport(currentDS);
   navigator.clipboard.writeText(txt).catch(()=>{});
   const t=document.getElementById('toast');
@@ -2825,6 +2863,7 @@ function downloadExport(type){
   let content='',filename='',mime='text/plain';
   if(type==='css'){content=getCSSExport(currentDS);filename='design-tokens.css';mime='text/css';}
   else if(type==='tailwind'){content=getTailwindExport(currentDS);filename='tailwind.config.js';mime='text/javascript';}
+  else if(type==='md'){PDAI.download(P[ai]);return;}
   else{content=getJSONExport(currentDS);filename='design-tokens.json';mime='application/json';}
   const blob=new Blob([content],{type:mime});
   const a=document.createElement('a');
@@ -2941,9 +2980,10 @@ if(IS_PRO) renderDesignSystem(P[ai]);
   function render(cols){
     body.innerHTML='<div class="pal-strip">'+cols.map(c=>'<div style="background:'+c+'"></div>').join('')+'</div>'+
       '<div class="pal-list">'+cols.map(c=>'<button class="pal-row" data-hex="'+c+'"><span class="pal-sw" style="background:'+c+'"></span><span class="pal-hex">'+c+'</span><span class="pal-cp">Copy</span></button>').join('')+'</div>'+
-      '<div class="pal-actions"><button class="pal-copy" id="pal-copy-all">Copy all colors</button></div>';
+      '<div class="pal-actions"><button class="pal-copy" id="pal-copy-all">Copy all colors</button><button class="pal-copy pal-alt" id="pal-copy-ai">Copy AI prompt</button></div>';
     body.querySelectorAll('.pal-row').forEach(b=>b.onclick=()=>copyHex(b.dataset.hex));
     document.getElementById('pal-copy-all').onclick=()=>copyHex(cols.join(', '));
+    document.getElementById('pal-copy-ai').onclick=()=>PDAI.copyPrompt(PDAI.fromColors(cols));
   }
 })();
 </script>
@@ -3226,10 +3266,50 @@ document.getElementById('pm-copy-all').addEventListener('click',()=>{
   const lines=ROLES.map(([n,k])=>n+': '+cur[k]);
   copy((cur.n?cur.n+'\n':'')+lines.join('\n'),'Copied all '+ROLES.length+' color codes');
 });
+document.getElementById('pm-copy-ai').addEventListener('click',()=>PDAI.copyPrompt(cur));
+document.getElementById('pm-dl-md').addEventListener('click',()=>PDAI.download(cur));
 document.getElementById('pm-copy-hex').addEventListener('click',()=>{
   const u=[...new Set(ROLES.map(([n,k])=>cur[k].toLowerCase()))];
   copy(u.join('\n'),'Copied '+u.length+' HEX codes');
 });
+})();
+</script>
+
+<script>
+/* ═══ AI export: paste into Claude / ChatGPT / Cursor, or save as .md ═══ */
+window.PDAI=(function(){
+  const ROLES=[['Background','bg','Page background'],['Headline','hl','Headings and key text'],['Paragraph','para','Body text'],['Button','btn','Primary buttons and links'],['Button text','btnT','Text on primary buttons'],['Card background','cbg','Cards and panels'],['Card headline','ch','Headings inside cards'],['Card paragraph','cp','Body text inside cards'],['Accent','acc','Highlights and active states'],['Tag background','tbg','Tags and badges'],['Tag text','tt','Text on tags'],['Dark background','dark','Dark sections and footer'],['Dark card','dk','Cards on dark sections']];
+  const VAR={bg:'--bg',hl:'--headline',para:'--paragraph',btn:'--button',btnT:'--button-text',cbg:'--card-bg',ch:'--card-headline',cp:'--card-paragraph',acc:'--accent',tbg:'--tag-bg',tt:'--tag-text',dark:'--dark-bg',dk:'--dark-card'};
+  const lin=h=>{const c=[1,3,5].map(i=>{const v=parseInt(h.slice(i,i+2),16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
+  const ratio=(a,b)=>{const x=lin(a),y=lin(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+  const lvl=r=>r>=7?'AAA':r>=4.5?'AA':r>=3?'AA large text only':'fails AA';
+  const pairs=p=>[['Headline on background',p.hl,p.bg],['Paragraph on background',p.para,p.bg],['Button text on button',p.btnT,p.btn],['Card headline on card',p.ch,p.cbg],['Tag text on tag',p.tt,p.tbg]].map(([n,f,b])=>{const r=ratio(f,b);return n+': '+r.toFixed(1)+':1 ('+lvl(r)+')'});
+  const name=p=>p.n||'Custom palette';
+  const slug=p=>name(p).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'palette';
+  const list=p=>ROLES.map(([n,k,u])=>'- '+n+': '+p[k]+' ('+u+')').join('\n');
+  const css=p=>':root {\n'+ROLES.map(([n,k])=>'  '+VAR[k]+': '+p[k]+';').join('\n')+'\n}';
+  const tw=p=>'colors: {\n'+ROLES.map(([n,k])=>"  '"+VAR[k].slice(2)+"': '"+p[k]+"',").join('\n')+'\n}';
+  const rules=p=>'- Use only these colors. Do not invent new ones; tints and shades of them are fine.\n- Roughly 60% background and card colors, 30% headline and body text, 10% button and accent.\n- Keep text readable: aim for WCAG AA (4.5:1) on every text and background pair.\n- Define the palette once as CSS variables and reference the variables everywhere.\n- Use the accent sparingly, for one focal point per screen.';
+  function prompt(p){
+    return 'Use this color palette ("'+name(p)+'") for everything you design or build in this conversation.\n\nColors:\n'+list(p)+'\n\nRules:\n'+rules(p)+'\n\nCSS variables:\n'+css(p)+'\n\nMy task: [describe what you want to build, for example "a pricing page for a note-taking app"]';
+  }
+  function md(p){
+    return '# '+name(p)+' color palette\n\nA 13-role color palette from ProductDesigner.xyz. Save this file as DESIGN.md (or add it to your project instructions), or attach it to a chat with Claude or ChatGPT, and ask for UI that uses these colors.\n\n## Colors\n\n| Role | HEX | Use for |\n| --- | --- | --- |\n'+ROLES.map(([n,k,u])=>'| '+n+' | `'+p[k]+'` | '+u+' |').join('\n')+'\n\n## Contrast check\n\n'+pairs(p).map(x=>'- '+x).join('\n')+'\n\n## CSS variables\n\n```css\n'+css(p)+'\n```\n\n## Tailwind colors\n\n```js\n'+tw(p)+'\n```\n\n## Instructions for AI\n\n'+rules(p)+'\n';
+  }
+  function toast(m){const t=document.getElementById('toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800);}
+  function copy(text,msg){try{navigator.clipboard.writeText(text).catch(()=>{});}catch(_){}toast(msg);}
+  function download(p){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md(p)],{type:'text/markdown'}));a.download=slug(p)+'-palette.md';document.body.appendChild(a);a.click();a.remove();toast('Downloaded '+slug(p)+'-palette.md');}
+  /* build a 13-role palette from a plain list of image colors */
+  function fromColors(cols){
+    const L=h=>lin(h),sat=h=>{const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));return Math.max(...c)-Math.min(...c)};
+    const by=[...cols].sort((a,b)=>L(b)-L(a));const light=by[0],dark=by[by.length-1];
+    const rest=by.slice(1,-1).length?by.slice(1,-1):[light,dark];
+    const btn=[...rest].sort((a,b)=>sat(b)-sat(a))[0];
+    const onBtn=ratio('#ffffff',btn)>=ratio('#111111',btn)?'#ffffff':'#111111';
+    const card=by[1]||light;
+    return {n:'Palette from my image',bg:light,hl:dark,para:dark,btn:btn,btnT:onBtn,cbg:card,ch:dark,cp:dark,acc:btn,tbg:dark,tt:light,dark:dark,dk:dark};
+  }
+  return {prompt,md,download,copy,fromColors,copyPrompt:p=>copy(prompt(p),'Copied AI prompt. Paste it into Claude or ChatGPT')};
 })();
 </script>
 </body>
